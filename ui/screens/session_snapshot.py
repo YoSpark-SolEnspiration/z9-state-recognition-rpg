@@ -33,13 +33,17 @@ def render_session_snapshot_screen() -> None:
 
     m1, m2, m3, m4 = st.columns(4)
     with m1:
-        st.metric("Explore", f"{summary['rooms_explored']}/{summary['rooms_total']}")
+        rooms_explored = summary.get("rooms_explored", 0)
+        rooms_total = summary.get("rooms_total", 4)
+        st.metric("Explore", f"{rooms_explored}/{rooms_total}")
     with m2:
-        st.metric("Tower", f"{summary['tower']['correct']}/{summary['tower']['total']}")
+        tower = summary.get("tower", {})
+        st.metric("Tower", f"{tower.get('correct', 0)}/{tower.get('total', 0)}")
     with m3:
-        st.metric("Gym", f"{summary['gym']['correct']}/{summary['gym']['total']}")
+        gym = summary.get("gym", {})
+        st.metric("Gym", f"{gym.get('correct', 0)}/{gym.get('total', 15)}")
     with m4:
-        st.metric("Accuracy", f"{summary['recognition_accuracy']}%")
+        st.metric("Accuracy", f"{summary.get('recognition_accuracy', 0)}%")
 
     st.divider()
     for section in report_payload.get("sections", []):

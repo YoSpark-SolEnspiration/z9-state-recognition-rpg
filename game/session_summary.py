@@ -4,8 +4,8 @@ from __future__ import annotations
 from typing import Any, Dict, List
 
 from game.gym_engine import gym_summary
-from game.tower_engine import tower_summary
 from game.scoring import accuracy_percent
+from game.tower_engine import tower_summary
 
 
 def _count_true_flags(flags: Dict[str, Any]) -> int:

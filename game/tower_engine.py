@@ -5,9 +5,10 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List
 
+from game.scoring import accuracy_percent
+
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data" / "tower"
-COURSE_DIR = ROOT / "data" / "course10"
 
 FLOOR_FILES = {
     "stage": DATA_DIR / "floor1_stage.json",
@@ -74,8 +75,24 @@ def evaluate_floor(floor_key: str, selected_answers: Dict[str, str]) -> Dict[str
 
 def tower_summary(progress: Dict[str, Any]) -> Dict[str, Any]:
     floors = get_tower_floors()
-    cleared = [k for k, v in progress.items() if isinstance(v, dict) and v.get("passed")]
+    correct = 0
+    total = 0
+    cleared: List[str] = []
+
+    for floor in floors:
+        key = floor["key"]
+        result = progress.get(key, {}) if isinstance(progress, dict) else {}
+        if isinstance(result, dict):
+            correct += int(result.get("correct", 0))
+            total += int(result.get("total", 0))
+            if result.get("passed"):
+                cleared.append(key)
+
     return {
+        "correct": correct,
+        "total": total,
+        "accuracy": accuracy_percent(correct, total),
+        "passed": len(cleared) >= len(floors),
         "floors_total": len(floors),
         "floors_cleared": len(cleared),
         "cleared_keys": cleared,

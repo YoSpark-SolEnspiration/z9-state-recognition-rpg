@@ -5,6 +5,7 @@ from typing import Dict
 
 import streamlit as st
 
+from game.scoring import deterministic_option_order
 from game.tower_engine import evaluate_floor, get_tower_floors, tower_summary
 from runtime.route_state import go_to
 from runtime.session_flags import get_flag, mark_tower_floor
@@ -24,10 +25,8 @@ def render_battle_tower_screen() -> None:
             go_to("state_selector")
         return
 
-    section_card(
-        "Active State",
-        f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}",
-    )
+    state_label = state.get("label") or f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}"
+    section_card("Active State", state_label)
 
     floors = get_tower_floors()
     tabs = st.tabs([floor["title"] for floor in floors])
@@ -39,13 +38,17 @@ def render_battle_tower_screen() -> None:
 
             selected: Dict[str, str] = {}
             for q in floor.get("questions", []):
+                qid = q["id"]
                 st.markdown(f"**{q.get('prompt', '')}**")
-                options = q.get("options", [])
+                options = deterministic_option_order(
+                    q.get("options", []),
+                    f"tower:{state_label}:{floor['key']}:{qid}",
+                )
                 if options:
-                    selected[q["id"]] = st.radio(
+                    selected[qid] = st.radio(
                         "Choose one:",
                         options,
-                        key=f"tower_{floor['key']}_{q['id']}",
+                        key=f"tower_{floor['key']}_{qid}",
                         label_visibility="collapsed",
                     )
 
@@ -59,6 +62,7 @@ def render_battle_tower_screen() -> None:
                     for item in result["results"]:
                         if not item["is_correct"]:
                             st.info(item.get("hint", "Review Explore clues."))
+                st.rerun()
 
             if floor["key"] in progress:
                 r = progress[floor["key"]]
@@ -66,7 +70,10 @@ def render_battle_tower_screen() -> None:
 
     summary = tower_summary(get_flag("tower_progress", {}))
     st.divider()
-    st.write(f"Floors cleared: {summary['floors_cleared']} / {summary['floors_total']}")
+    st.write(
+        f"Tower score: {summary['correct']} / {summary['total']} "
+        f"({summary['accuracy']}%) | Floors cleared: {summary['floors_cleared']} / {summary['floors_total']}"
+    )
 
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -80,6 +87,5 @@ def render_battle_tower_screen() -> None:
             go_to("gym")
 
 
-# Backward-compatible alias if an older app import is still present.
 def render_battle_tower() -> None:
     render_battle_tower_screen()

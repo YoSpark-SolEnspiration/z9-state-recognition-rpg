@@ -1,8 +1,9 @@
 # FILE: game/scoring.py
 from __future__ import annotations
 
+import random
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, Iterable, List, Sequence
 
 
 @dataclass(frozen=True)
@@ -36,3 +37,10 @@ def accuracy_percent(correct: int, total: int) -> int:
     if total <= 0:
         return 0
     return round((correct / total) * 100)
+
+
+def deterministic_option_order(options: Sequence[str], seed: str) -> List[str]:
+    """Shuffle display order while keeping answers/evaluation unchanged."""
+    ordered = list(options)
+    random.Random(seed).shuffle(ordered)
+    return ordered

@@ -1,0 +1,199 @@
+.
+├── .gitkeep
+├── BATCH_01_MANIFEST.md
+├── README.md
+├── app.py
+├── app_state.py
+├── archive
+│   ├── deferred_unity
+│   │   └── .gitkeep
+│   └── original_demo
+│       ├── content
+│       │   └── bindings
+│       │       └── course10
+│       │           ├── course10_area1_bindings.json
+│       │           └── course10_area1_ui_contract.json
+│       ├── data
+│       │   └── contracts_json
+│       │       ├── fairy_snapshot_v1.json
+│       │       ├── mission_result_v1.json
+│       │       └── report_v1.json
+│       ├── disc_profile.py
+│       ├── engine
+│       │   ├── determinism.py
+│       │   ├── runner.py
+│       │   ├── town_loader.py
+│       │   └── town_state.py
+│       ├── engine_client.py
+│       ├── results_view.py
+│       ├── runtime
+│       │   ├── loaders
+│       │   │   └── load_townspec.py
+│       │   └── validators
+│       │       └── validate_townspec.py
+│       └── unity_bridge
+│           ├── contract.py
+│           └── stub_runtime.py
+├── assets
+│   ├── battle
+│   │   ├── effects
+│   │   │   └── .gitkeep
+│   │   ├── floors
+│   │   │   └── .gitkeep
+│   │   └── prompts
+│   │       └── .gitkeep
+│   ├── gym
+│   │   ├── badges
+│   │   │   └── .gitkeep
+│   │   ├── boss
+│   │   │   └── .gitkeep
+│   │   └── pressure_rooms
+│   │       └── .gitkeep
+│   ├── logos
+│   │   └── state_icons
+│   │       └── .gitkeep
+│   ├── npc
+│   │   ├── caleb
+│   │   │   └── .gitkeep
+│   │   ├── donte
+│   │   │   └── .gitkeep
+│   │   ├── isaac
+│   │   │   └── .gitkeep
+│   │   └── samantha
+│   │       └── .gitkeep
+│   ├── town
+│   │   ├── pillar_market
+│   │   │   └── .gitkeep
+│   │   ├── reaction_alley
+│   │   │   └── .gitkeep
+│   │   ├── story_square
+│   │   │   └── .gitkeep
+│   │   ├── town_center
+│   │   │   └── .gitkeep
+│   │   └── vocab_hall
+│   │       └── .gitkeep
+│   └── ui
+│       ├── badges
+│       │   └── .gitkeep
+│       ├── buttons
+│       │   └── .gitkeep
+│       ├── cards
+│       │   └── .gitkeep
+│       └── frames
+│           └── .gitkeep
+├── config.py
+├── content
+│   └── registries
+│       ├── npc_registry.json
+│       ├── question_pools.json
+│       └── town_palettes.json
+├── data
+│   ├── course10
+│   │   ├── explore_room_index.json
+│   │   ├── gym_questions.json
+│   │   ├── jordan_scenarios.json
+│   │   ├── reflection_prompts.json
+│   │   ├── stage_health_tables.json
+│   │   ├── testimony_nodes.json
+│   │   ├── tower_questions.json
+│   │   ├── travelers_nodes.json
+│   │   └── vocab_nodes.json
+│   ├── gym
+│   │   ├── .gitkeep
+│   │   ├── boss_sequences.json
+│   │   ├── evaluation_rules.json
+│   │   ├── gym_hint_index.json
+│   │   ├── gym_leader_dialogue.json
+│   │   ├── gym_progression_map.json
+│   │   └── pressure_scenarios.json
+│   ├── npc
+│   │   ├── .gitkeep
+│   │   ├── caleb_nodes.json
+│   │   ├── donte_nodes.json
+│   │   ├── isaac_nodes.json
+│   │   └── samantha_nodes.json
+│   ├── schemas
+│   │   └── TownSpec.schema.json
+│   ├── snapshots
+│   │   ├── .gitkeep
+│   │   ├── recognition_rankings.json
+│   │   ├── session_snapshot_template.json
+│   │   └── session_summary_rules.json
+│   ├── state_maps
+│   │   ├── .gitkeep
+│   │   ├── disc_matrix_routes.json
+│   │   ├── ohu_routes.json
+│   │   ├── ptype_routes.json
+│   │   └── stage_routes.json
+│   ├── tower
+│   │   ├── .gitkeep
+│   │   ├── floor1_stage.json
+│   │   ├── floor2_disc.json
+│   │   ├── floor3_pillars.json
+│   │   ├── floor4_ohu.json
+│   │   ├── tower_hint_index.json
+│   │   └── tower_progression_map.json
+│   └── towns
+│       └── course10_town.json
+├── dev
+│   ├── __init__.py
+│   ├── developer_tools.py
+│   ├── payload_viewer.py
+│   └── qa_mode.py
+├── docs
+│   └── source_refs
+│       ├── .gitkeep
+│       └── Course10Adventure_Workbook.pdf
+├── game
+│   ├── __init__.py
+│   ├── explore_engine.py
+│   ├── gym_engine.py
+│   ├── pillar_engine.py
+│   ├── reaction_engine.py
+│   ├── scoring.py
+│   ├── session_summary.py
+│   ├── state_selector.py
+│   ├── story_engine.py
+│   ├── tower_engine.py
+│   ├── town_state.py
+│   └── vocab_engine.py
+├── repo_tree.txt
+├── reports
+│   ├── __init__.py
+│   ├── pdf_export.py
+│   ├── session_snapshot_builder.py
+│   └── templates
+│       ├── snapshot_layout.py
+│       ├── snapshot_sections.py
+│       └── snapshot_styles.py
+├── requirements.txt
+├── runtime
+│   ├── __init__.py
+│   ├── route_state.py
+│   ├── save_state.py
+│   └── session_flags.py
+├── tests
+│   ├── __init__.py
+│   ├── gym_test.py
+│   ├── routing_test.py
+│   ├── smoke_test.py
+│   └── tower_test.py
+└── ui
+    ├── __init__.py
+    ├── components.py
+    ├── explore.py
+    ├── layout.py
+    ├── screens
+    │   ├── __init__.py
+    │   ├── battle_tower.py
+    │   ├── developer_panel.py
+    │   ├── explore.py
+    │   ├── gym.py
+    │   ├── home.py
+    │   ├── session_snapshot.py
+    │   ├── state_selector.py
+    │   └── town.py
+    ├── theme.py
+    └── town.py
+
+62 directories, 135 files

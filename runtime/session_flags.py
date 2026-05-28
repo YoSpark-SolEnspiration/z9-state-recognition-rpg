@@ -11,6 +11,7 @@ DEFAULT_FLAGS: Dict[str, Any] = {
     "explore_flags": {},
     "tower_progress": {},
     "gym_progress": {},
+    "gym_results": {},
     "snapshot_ready": False,
 }
 
@@ -31,11 +32,21 @@ def get_flag(name: str, default: Any = None) -> Any:
     return st.session_state.get(name, default)
 
 
-def mark_explore_flag(flag_key: str, value: Any = True) -> None:
+def get_explore_flags() -> Dict[str, Any]:
     init_session_flags()
-    flags = dict(st.session_state.get("explore_flags", {}))
+    flags = st.session_state.get("explore_flags", {})
+    return dict(flags) if isinstance(flags, dict) else {}
+
+
+def set_explore_flag(flag_key: str, value: Any = True) -> None:
+    init_session_flags()
+    flags = get_explore_flags()
     flags[flag_key] = value
     st.session_state["explore_flags"] = flags
+
+
+def mark_explore_flag(flag_key: str, value: Any = True) -> None:
+    set_explore_flag(flag_key, value)
 
 
 def mark_tower_floor(floor_key: str, result: Dict[str, Any]) -> None:
@@ -61,4 +72,3 @@ def set_snapshot_ready(value: bool = True) -> None:
 def reset_gameplay() -> None:
     for key, value in DEFAULT_FLAGS.items():
         st.session_state[key] = value.copy() if isinstance(value, dict) else value
-    st.session_state["gym_results"] = {}

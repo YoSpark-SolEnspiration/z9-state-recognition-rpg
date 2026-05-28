@@ -6,6 +6,7 @@ from typing import Dict
 import streamlit as st
 
 from game.gym_engine import evaluate_gym_round, get_gym_rounds, gym_summary
+from game.scoring import deterministic_option_order
 from runtime.route_state import go_to
 from runtime.session_flags import get_flag, mark_gym_round, set_snapshot_ready
 from ui.components import section_card
@@ -24,11 +25,8 @@ def render_gym_screen() -> None:
             go_to("state_selector")
         return
 
-    section_card(
-        "Active State",
-        f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}",
-        "Gym Context",
-    )
+    state_label = state.get("label") or f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}"
+    section_card("Active State", state_label, "Gym Context")
 
     st.info("Gym rule: 15 total recognition prompts. 12 correct defeats the Gym Leader. 11 or below means retry the Gym, not the whole town.")
 
@@ -42,13 +40,17 @@ def render_gym_screen() -> None:
 
             selected: Dict[str, str] = {}
             for q in gym_round.get("questions", []):
+                qid = q["id"]
                 st.markdown(f"**{q.get('prompt', '')}**")
-                options = q.get("options", [])
+                options = deterministic_option_order(
+                    q.get("options", []),
+                    f"gym:{state_label}:{gym_round['key']}:{qid}",
+                )
                 if options:
-                    selected[q["id"]] = st.radio(
+                    selected[qid] = st.radio(
                         "Choose one:",
                         options,
-                        key=f"gym_{gym_round['key']}_{q['id']}",
+                        key=f"gym_{gym_round['key']}_{qid}",
                         label_visibility="collapsed",
                     )
 
@@ -62,6 +64,7 @@ def render_gym_screen() -> None:
                     for item in result["results"]:
                         if not item["is_correct"]:
                             st.info(item.get("hint", "Review recognition clues."))
+                st.rerun()
 
             if gym_round["key"] in progress:
                 r = progress[gym_round["key"]]

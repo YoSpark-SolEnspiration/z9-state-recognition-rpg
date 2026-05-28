@@ -24,7 +24,9 @@ def render_state_selector_screen() -> None:
         ohu = st.selectbox("OHU", OHU_OPTIONS, index=0)
 
         payload = build_active_state(disc_type, subtype, stage, ohu)
-        st.json(payload, expanded=False)
+
+        if st.toggle("Developer: show active state payload", value=False):
+            st.json(payload, expanded=False)
 
         if st.button("Enter Town", type="primary", use_container_width=True):
             set_active_town_state(payload)
