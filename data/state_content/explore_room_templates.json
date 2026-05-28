@@ -1,0 +1,27 @@
+{
+  "purpose": "Checkpoint 2 state-aware Explore room library seed.",
+  "status": "expanded_in_batch_10",
+  "rooms": {
+    "vocab_hall": "Course 10 concepts translated through selected DISC, subtype, stage, and OHU.",
+    "story_square": "NPC scene grammar selected by primary type character, subtype tone, stage pressure, and OHU expression.",
+    "reaction_alley": "Overdeveloped, healthy, and underdeveloped response comparison for selected type and stage pressure.",
+    "pillar_market": "Nine-pillar interpretation of the selected state with state-specific body text."
+  },
+  "characters": {
+    "D": "Donte",
+    "I": "Isaac",
+    "S": "Samantha",
+    "C": "Caleb"
+  },
+  "course10_terms": [
+    "Sustainability",
+    "Intrinsic Motivation",
+    "Self-Regulation",
+    "Resilience",
+    "Habit Formation",
+    "Behavioral Adaptation",
+    "Cognitive Flexibility",
+    "Accountability Systems"
+  ],
+  "next_checkpoint_note": "This is still deterministic demo content. It prepares the overlay packet shape before live HSIE or Sol's Odyssey integration."
+}

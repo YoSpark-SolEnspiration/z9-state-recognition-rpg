@@ -1,0 +1,18 @@
+{
+  "purpose": "Checkpoint 2 OHU reaction language for selected-state recognition.",
+  "status": "deterministic_demo_layer_not_live_hsie",
+  "ohu": {
+    "Overdeveloped": {
+      "movement": "too much trait",
+      "recognition_key": "look for intensity, rigidity, overuse, or forced certainty"
+    },
+    "Healthy": {
+      "movement": "regulated trait",
+      "recognition_key": "look for flexibility, clarity, repair, and sustainable adjustment"
+    },
+    "Underdeveloped": {
+      "movement": "withheld trait",
+      "recognition_key": "look for withdrawal, resignation, helplessness, or muted expression"
+    }
+  }
+}

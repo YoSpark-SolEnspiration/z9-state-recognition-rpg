@@ -1,95 +1,85 @@
 # FILE: ui/screens/gym.py
 from __future__ import annotations
 
-from typing import Dict
-
 import streamlit as st
 
-from game.gym_engine import evaluate_gym_round, get_gym_rounds, gym_summary
-from game.scoring import deterministic_option_order
-from runtime.route_state import go_to
-from runtime.session_flags import get_flag, mark_gym_round, set_snapshot_ready
-from ui.components import section_card
+from app_state import get_active_town_state, set_screen
+from game.gym_engine import PASSING_SCORE, get_gym_questions, save_gym_results, score_gym
+from ui.components import progress_steps, section_card
 
 
 def render_gym_screen() -> None:
-    state = get_flag("active_town_state")
-    progress = get_flag("gym_progress", {})
+    active_state = get_active_town_state()
+    if not active_state:
+        st.warning("No active state selected.")
+        if st.button("Return to State Selector"):
+            set_screen("state_selector")
+            st.rerun()
+        return
+
+    progress_steps(["Home", "Select State", "Town", "Explore", "Tower", "Gym", "Snapshot"], 5)
 
     st.title("Gym")
     st.caption("Recognition under pressure. The boss is defeated by recognizing the state, not overpowering it.")
 
-    if not state:
-        st.warning("Select a state before entering the Gym.")
-        if st.button("Return to State Selector"):
-            go_to("state_selector")
-        return
+    section_card("Active State", active_state.get("label", "No active state"), "Gym Context")
+    st.info(f"Gym rule: 15 prompts. {PASSING_SCORE} correct defeats the Gym Leader. Retry Gym only if needed.")
 
-    state_label = state.get("label") or f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}"
-    section_card("Active State", state_label, "Gym Context")
+    questions = get_gym_questions(active_state)
+    answers = st.session_state.setdefault("gym_answers", {})
 
-    st.info("Gym rule: 15 total recognition prompts. 12 correct defeats the Gym Leader. 11 or below means retry the Gym, not the whole town.")
+    round_tabs = st.tabs([
+        "Round 1: Warm Pressure",
+        "Round 2: Mixed OHU",
+        "Round 3: Story Pressure",
+        "Round 4: Gym Leader",
+    ])
 
-    rounds = get_gym_rounds()
-    tabs = st.tabs([gym_round["title"] for gym_round in rounds])
+    chunks = [
+        questions[0:3],
+        questions[3:6],
+        questions[6:11],
+        questions[11:15],
+    ]
 
-    for tab, gym_round in zip(tabs, rounds):
+    for tab, chunk in zip(round_tabs, chunks):
         with tab:
-            st.subheader(gym_round["title"])
-            st.write(gym_round["purpose"])
-
-            selected: Dict[str, str] = {}
-            for q in gym_round.get("questions", []):
-                qid = q["id"]
-                st.markdown(f"**{q.get('prompt', '')}**")
-                options = deterministic_option_order(
-                    q.get("options", []),
-                    f"gym:{state_label}:{gym_round['key']}:{qid}",
+            for q in chunk:
+                choice = st.radio(
+                    q["prompt"],
+                    q["options"],
+                    index=None,
+                    key=f"gym_{q['id']}",
                 )
-                if options:
-                    selected[qid] = st.radio(
-                        "Choose one:",
-                        options,
-                        key=f"gym_{gym_round['key']}_{qid}",
-                        label_visibility="collapsed",
-                    )
+                if choice is not None:
+                    answers[q["id"]] = choice
 
-            if st.button(f"Submit {gym_round['title']}", key=f"submit_gym_{gym_round['key']}"):
-                result = evaluate_gym_round(gym_round["key"], selected)
-                mark_gym_round(gym_round["key"], result)
-                if result["passed"]:
-                    st.success(f"Round recognized: {result['correct']}/{result['total']}")
-                else:
-                    st.warning(f"Pressure pattern missed: {result['correct']}/{result['total']}")
-                    for item in result["results"]:
-                        if not item["is_correct"]:
-                            st.info(item.get("hint", "Review recognition clues."))
-                st.rerun()
-
-            if gym_round["key"] in progress:
-                r = progress[gym_round["key"]]
-                st.caption(f"Current result: {r.get('correct', 0)}/{r.get('total', 0)} | Passed: {r.get('passed', False)}")
-
-    summary = gym_summary(get_flag("gym_progress", {}))
     st.divider()
-    st.write(
-        f"Gym score: {summary['correct']} / {summary['total']} "
-        f"({summary['accuracy']}%) | Required: {summary['required_correct']}"
+
+    if st.button("Submit Gym Run", use_container_width=True):
+        results = score_gym(active_state, answers)
+        save_gym_results(st.session_state, results)
+
+        if results["passed"]:
+            st.success(f"Gym Leader defeated: {results['correct']}/{results['total']} ({results['accuracy']}%)")
+            set_screen("session_snapshot")
+            st.rerun()
+        else:
+            st.error(f"Retry Gym: {results['correct']}/{results['total']} ({results['accuracy']}%)")
+
+    results = st.session_state.get("gym_results", {})
+    st.metric(
+        "Gym score",
+        f"{results.get('correct', 0)} / {results.get('total', len(questions))}",
+        f"{results.get('accuracy', 0)}%",
     )
 
-    if summary["passed"]:
-        set_snapshot_ready(True)
-        st.success("Gym Leader defeated. Session Snapshot is ready.")
-    elif summary["total"] > 0:
-        st.warning("Retry the Gym rounds to reach 12 correct recognitions.")
-
-    c1, c2, c3 = st.columns(3)
+    c1, c2 = st.columns(2)
     with c1:
-        if st.button("Return to Tower"):
-            go_to("battle_tower")
+        if st.button("Back to Tower", use_container_width=True):
+            set_screen("battle_tower")
+            st.rerun()
     with c2:
-        if st.button("Review Explore"):
-            go_to("explore")
-    with c3:
-        if st.button("Open Snapshot", disabled=not summary["passed"]):
-            go_to("session_snapshot")
+        if st.button("View Snapshot", use_container_width=True):
+            set_screen("session_snapshot")
+            st.rerun()

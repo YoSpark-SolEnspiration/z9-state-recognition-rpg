@@ -1,0 +1,15 @@
+{
+  "purpose": "Checkpoint 2 demo templates for rendering selected states through the nine Z9 pillar lenses.",
+  "status": "deterministic_demo_layer_not_live_hsie",
+  "pillars": [
+    {"name": "DISC Identity", "lens": "behavioral style", "question": "Which trait expression is leading the room?"},
+    {"name": "Developmental Stage", "lens": "developmental need", "question": "Which stage pressure is shaping the reaction?"},
+    {"name": "Motivation Systems", "lens": "why movement continues", "question": "Is motivation intrinsic, external, collapsed, or overforced?"},
+    {"name": "Cognitive Dissonance", "lens": "value-action conflict", "question": "Where do stated values and behavior split?"},
+    {"name": "Self-Regulation", "lens": "pressure management", "question": "Can the state adjust without losing its useful trait?"},
+    {"name": "Social Learning", "lens": "visible influence", "question": "What behavior is being modeled, copied, or normalized?"},
+    {"name": "ZPD", "lens": "nearest teachable step", "question": "What support makes the next move reachable?"},
+    {"name": "Spiral Harmony", "lens": "growth movement", "question": "Does the state stabilize or spiral into friction?"},
+    {"name": "Resonance & Recursion", "lens": "recurring state loop", "question": "What pattern repeats across contexts?"}
+  ]
+}

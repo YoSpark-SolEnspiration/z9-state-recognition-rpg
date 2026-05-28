@@ -1,8 +1,25 @@
 # FILE: tests/smoke_test.py
-from app_state import AppState
+from __future__ import annotations
+
+import importlib
 
 
-def test_app_state_defaults():
-    state = AppState()
-    assert state.screen == "home"
-    assert state.active_state.subtype == "DD"
+def test_core_modules_import() -> None:
+    modules = [
+        "app",
+        "app_state",
+        "game.content_router",
+        "game.tower_engine",
+        "game.gym_engine",
+        "game.session_summary",
+        "ui.screens.home",
+        "ui.screens.state_selector",
+        "ui.screens.town",
+        "ui.screens.explore",
+        "ui.screens.battle_tower",
+        "ui.screens.gym",
+        "ui.screens.session_snapshot",
+    ]
+
+    for module in modules:
+        importlib.import_module(module)

@@ -1,91 +1,130 @@
 # FILE: ui/screens/battle_tower.py
 from __future__ import annotations
 
-from typing import Dict
+from typing import Any, cast
 
 import streamlit as st
 
-from game.scoring import deterministic_option_order
-from game.tower_engine import evaluate_floor, get_tower_floors, tower_summary
-from runtime.route_state import go_to
-from runtime.session_flags import get_flag, mark_tower_floor
-from ui.components import section_card
+from app_state import get_active_town_state, set_screen
+from game.tower_engine import (
+    FLOOR_ORDER,
+    get_floor_questions,
+    get_tower_state,
+    is_tower_complete,
+    next_floor,
+    recompute_tower_totals,
+    score_floor,
+)
+from ui.components import progress_steps, section_card
+
+
+def _session_dict() -> dict[str, Any]:
+    return cast(dict[str, Any], st.session_state)
 
 
 def render_battle_tower_screen() -> None:
-    state = get_flag("active_town_state")
-    progress = get_flag("tower_progress", {})
+    session = _session_dict()
 
+    active_state = get_active_town_state()
+    if not active_state:
+        st.warning("No active state selected.")
+        if st.button("Return to State Selector"):
+            set_screen("state_selector")
+            st.rerun()
+        return
+
+    progress_steps(
+        ["Home", "Select State", "Town", "Explore", "Tower", "Gym", "Snapshot"],
+        4,
+    )
     st.title("Battle Tower")
     st.caption("Recognition practice. Clear each floor before entering the Gym.")
 
-    if not state:
-        st.warning("Select a state before entering the Battle Tower.")
-        if st.button("Return to State Selector"):
-            go_to("state_selector")
-        return
+    section_card("Active State", active_state.get("label", "No active state"))
 
-    state_label = state.get("label") or f"{state.get('subtype', 'DD')} / Stage {state.get('stage', 1)} / {state.get('ohu', 'Overdeveloped')}"
-    section_card("Active State", state_label)
+    tower = get_tower_state(session)
+    floor_id = tower.get("active_floor", "floor1_stage")
 
-    floors = get_tower_floors()
-    tabs = st.tabs([floor["title"] for floor in floors])
+    floor_labels = {fid: title for fid, title, _ in FLOOR_ORDER}
+    floor_descriptions = {fid: desc for fid, _, desc in FLOOR_ORDER}
 
-    for tab, floor in zip(tabs, floors):
+    st.markdown("### Tower Floors")
+    tabs = st.tabs([title for _, title, _ in FLOOR_ORDER])
+
+    for tab, (fid, title, _desc) in zip(tabs, FLOOR_ORDER):
         with tab:
-            st.subheader(floor["title"])
-            st.write(floor["purpose"])
-
-            selected: Dict[str, str] = {}
-            for q in floor.get("questions", []):
-                qid = q["id"]
-                st.markdown(f"**{q.get('prompt', '')}**")
-                options = deterministic_option_order(
-                    q.get("options", []),
-                    f"tower:{state_label}:{floor['key']}:{qid}",
-                )
-                if options:
-                    selected[qid] = st.radio(
-                        "Choose one:",
-                        options,
-                        key=f"tower_{floor['key']}_{qid}",
-                        label_visibility="collapsed",
-                    )
-
-            if st.button(f"Submit {floor['title']}", key=f"submit_{floor['key']}"):
-                result = evaluate_floor(floor["key"], selected)
-                mark_tower_floor(floor["key"], result)
-                if result["passed"]:
-                    st.success(f"Floor cleared: {result['correct']}/{result['total']}")
-                else:
-                    st.warning(f"Retry recommended: {result['correct']}/{result['total']}")
-                    for item in result["results"]:
-                        if not item["is_correct"]:
-                            st.info(item.get("hint", "Review Explore clues."))
+            if st.button(
+                f"Set active: {title}",
+                key=f"set_{fid}",
+                use_container_width=True,
+            ):
+                tower["active_floor"] = fid
                 st.rerun()
 
-            if floor["key"] in progress:
-                r = progress[floor["key"]]
-                st.caption(f"Current result: {r.get('correct', 0)}/{r.get('total', 0)} | Passed: {r.get('passed', False)}")
-
-    summary = tower_summary(get_flag("tower_progress", {}))
     st.divider()
-    st.write(
-        f"Tower score: {summary['correct']} / {summary['total']} "
-        f"({summary['accuracy']}%) | Floors cleared: {summary['floors_cleared']} / {summary['floors_total']}"
-    )
+    st.subheader(floor_labels.get(floor_id, "Tower Floor"))
+    st.write(floor_descriptions.get(floor_id, ""))
 
-    c1, c2, c3 = st.columns(3)
+    questions = get_floor_questions(active_state, floor_id)
+    answers = tower.setdefault("answers", {})
+    if not isinstance(answers, dict):
+        answers = {}
+        tower["answers"] = answers
+
+    floor_answers = answers.setdefault(floor_id, {})
+    if not isinstance(floor_answers, dict):
+        floor_answers = {}
+        answers[floor_id] = floor_answers
+
+    for question in questions:
+        question_id = question["id"]
+        choice = st.radio(
+            question["prompt"],
+            question["options"],
+            index=None,
+            key=f"tower_{floor_id}_{question_id}",
+        )
+
+        if choice is not None:
+            floor_answers[question_id] = choice
+
+    if st.button("Submit Floor", use_container_width=True):
+        score = score_floor(active_state, floor_id, floor_answers)
+
+        floor_scores = tower.setdefault("floor_scores", {})
+        if not isinstance(floor_scores, dict):
+            floor_scores = {}
+            tower["floor_scores"] = floor_scores
+
+        floor_scores[floor_id] = score
+        recompute_tower_totals(session)
+
+        if score["total"] and score["correct"] >= max(1, score["total"] - 1):
+            st.success(f"Floor cleared: {score['correct']}/{score['total']}")
+            nxt = next_floor(floor_id)
+            if nxt:
+                tower["active_floor"] = nxt
+            st.rerun()
+        else:
+            st.error(f"Retry this floor: {score['correct']}/{score['total']}")
+
+    tower = recompute_tower_totals(session)
+
+    st.divider()
+    st.metric("Tower Score", f"{tower.get('correct', 0)} / {tower.get('total', 0)}")
+    st.write(f"Floors cleared: {len(tower.get('cleared', []))} / {len(FLOOR_ORDER)}")
+
+    c1, c2 = st.columns(2)
+
     with c1:
-        if st.button("Return to Town"):
-            go_to("town")
+        if is_tower_complete(session):
+            if st.button("Enter Gym", use_container_width=True):
+                set_screen("gym")
+                st.rerun()
+        else:
+            st.info("Clear all floors to unlock the Gym.")
+
     with c2:
-        if st.button("Review Explore"):
-            go_to("explore")
-    with c3:
-        if st.button("Enter Gym", disabled=not summary["qualified_for_gym"]):
-            go_to("gym")
-
-
-def render_battle_tower() -> None:
-    render_battle_tower_screen()
+        if st.button("Return to Town", use_container_width=True):
+            set_screen("town")
+            st.rerun()
