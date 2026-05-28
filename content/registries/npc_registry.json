@@ -1,0 +1,8 @@
+{
+  "npcs": {
+    "npc_default": { "name": "Guide", "role": "helper" },
+    "npc_vocab_1": { "name": "Vocab NPC 1", "role": "vocab" },
+    "npc_vocab_2": { "name": "Vocab NPC 2", "role": "vocab" },
+    "npc_vocab_3": { "name": "Vocab NPC 3", "role": "vocab" }
+  }
+}

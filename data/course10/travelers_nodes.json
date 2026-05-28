@@ -1,0 +1,17 @@
+[
+  {
+    "id": "mental_health_traveler",
+    "title": "Mental Health Traveler",
+    "focus": "routine, goal-setting, adaptability, mindfulness"
+  },
+  {
+    "id": "emotional_health_traveler",
+    "title": "Emotional Health Traveler",
+    "focus": "resilience, support, connection, reframing setbacks"
+  },
+  {
+    "id": "physical_health_traveler",
+    "title": "Physical Health Traveler",
+    "focus": "movement, mobility, sleep, nutrition, long-term fitness"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "floors": [
+    {"key": "stage", "order": 1, "title": "Stage Recognition", "required_correct": 2},
+    {"key": "disc", "order": 2, "title": "DISC Recognition", "required_correct": 2},
+    {"key": "pillars", "order": 3, "title": "Pillar Recognition", "required_correct": 2},
+    {"key": "ohu", "order": 4, "title": "Wing / PType / OHU Recognition", "required_correct": 2}
+  ],
+  "gym_unlock_rule": "clear_all_floors"
+}

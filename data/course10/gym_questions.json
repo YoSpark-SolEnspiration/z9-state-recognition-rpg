@@ -1,0 +1,34 @@
+{
+  "title": "Round 2: Mixed OHU",
+  "purpose": "Compare overdeveloped, healthy, and underdeveloped reactions under the same pressure.",
+  "questions": [
+    {
+      "id": "mixed_ohu_overdeveloped",
+      "prompt": "Pressure: the routine breaks. Response: 'Move. I’ll handle it myself.' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Neutral"],
+      "answer": "Overdeveloped",
+      "hint": "Overdeveloped expression overuses the trait until it crowds out regulation."
+    },
+    {
+      "id": "mixed_ohu_healthy",
+      "prompt": "Pressure: the routine breaks. Response: 'Okay. What matters most right now?' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Avoidant"],
+      "answer": "Healthy",
+      "hint": "Healthy expression keeps direction while adapting."
+    },
+    {
+      "id": "mixed_ohu_underdeveloped",
+      "prompt": "Pressure: the routine breaks. Response: 'Forget it. Nobody listens anyway.' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Balanced"],
+      "answer": "Underdeveloped",
+      "hint": "Underdeveloped expression collapses away from the trait’s useful function."
+    },
+    {
+      "id": "mixed_ohu_best_reframe",
+      "prompt": "Which response best reframes a setback as learning instead of failure?",
+      "options": ["This proves I should quit.", "What can this teach me about my support system?", "Everyone failed me.", "I need a perfect plan."],
+      "answer": "What can this teach me about my support system?",
+      "hint": "Course 10 treats setbacks as feedback for adjustment."
+    }
+  ]
+}

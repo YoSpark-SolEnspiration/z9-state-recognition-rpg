@@ -1,0 +1,34 @@
+{
+  "title": "Round 3: Story Pressure",
+  "purpose": "Apply Course 10 sustainability logic to a narrative pressure scene.",
+  "questions": [
+    {
+      "id": "jordan_adaptable_goals",
+      "prompt": "Jordan has followed a routine for six months, but work stress disrupts consistency. What should Jordan focus on first?",
+      "options": ["Adaptable and realistic goals", "A stricter routine with no flexibility", "Quitting until life calms down", "Only external praise"],
+      "answer": "Adaptable and realistic goals",
+      "hint": "Course 10 emphasizes adapting through life changes instead of abandoning the goal."
+    },
+    {
+      "id": "jordan_accountability",
+      "prompt": "Jordan adds a workout partner or health coach. Which Course 10 concept is being used?",
+      "options": ["Accountability", "Perfection", "Avoidance", "Speed of results"],
+      "answer": "Accountability",
+      "hint": "Accountability systems provide external structure for consistency."
+    },
+    {
+      "id": "jordan_learning",
+      "prompt": "Jordan reframes setbacks as opportunities for what?",
+      "options": ["Growth and learning", "Blame", "Permanent failure", "Rigid control"],
+      "answer": "Growth and learning",
+      "hint": "The Course 10 answer key frames setbacks as learning experiences."
+    },
+    {
+      "id": "jordan_behavioral_adaptation",
+      "prompt": "Jordan uses stress management and habit stacking to maintain progress. Which concept is this?",
+      "options": ["Behavioral adaptation", "Public performance", "Role confusion", "Avoidance"],
+      "answer": "Behavioral adaptation",
+      "hint": "Behavioral adaptation means adjusting habits in response to life changes."
+    }
+  ]
+}

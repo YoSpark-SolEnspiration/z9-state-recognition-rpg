@@ -1,0 +1,28 @@
+{
+  "title": "Floor 4: Wing / PType / OHU Recognition",
+  "purpose": "Practice distinguishing overdeveloped, healthy, and underdeveloped expressions.",
+  "required_correct": 2,
+  "questions": [
+    {
+      "id": "ohu_overdeveloped_d",
+      "prompt": "The plan changes and Donte says, 'Move. I’ll handle it myself.' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Neutral"],
+      "answer": "Overdeveloped",
+      "hint": "Overdeveloped D often over-controls under pressure."
+    },
+    {
+      "id": "ohu_healthy_d",
+      "prompt": "The plan changes and Donte says, 'Okay. What matters most right now?' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Avoidant"],
+      "answer": "Healthy",
+      "hint": "Healthy D keeps direction while staying responsive."
+    },
+    {
+      "id": "ohu_underdeveloped_d",
+      "prompt": "The plan changes and Donte says, 'Forget it. Nobody listens anyway.' Which OHU expression is this?",
+      "options": ["Overdeveloped", "Healthy", "Underdeveloped", "Balanced"],
+      "answer": "Underdeveloped",
+      "hint": "Underdeveloped D can collapse into resignation when agency feels blocked."
+    }
+  ]
+}

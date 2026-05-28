@@ -1,0 +1,34 @@
+{
+  "title": "Round 4: Gym Leader",
+  "purpose": "Recognize the same state as pressure transforms its expression across scenes.",
+  "questions": [
+    {
+      "id": "boss_scene_control",
+      "prompt": "Gym Leader Scene 1: The key is missing. Donte grabs the room and demands answers. Which expression is visible?",
+      "options": ["Overdeveloped D under Stage 1 mistrust pressure", "Healthy I expression", "Underdeveloped C avoidance", "Healthy S support"],
+      "answer": "Overdeveloped D under Stage 1 mistrust pressure",
+      "hint": "Look for urgency, control, and inability to trust help."
+    },
+    {
+      "id": "boss_scene_withdraw",
+      "prompt": "Gym Leader Scene 2: Donte stops directing and says, 'Forget it. Nobody listens anyway.' What shifted?",
+      "options": ["D moved underdeveloped", "D became healthy", "S became overdeveloped", "C became healthy"],
+      "answer": "D moved underdeveloped",
+      "hint": "The same D state can collapse when agency feels blocked."
+    },
+    {
+      "id": "boss_scene_stabilize",
+      "prompt": "Gym Leader Scene 3: Donte pauses and asks, 'What matters most right now?' Which response is this?",
+      "options": ["Healthy D", "Overdeveloped D", "Underdeveloped D", "Avoidant D"],
+      "answer": "Healthy D",
+      "hint": "Healthy D keeps direction while restoring regulation."
+    },
+    {
+      "id": "boss_scene_delegate",
+      "prompt": "Gym Leader Scene 4: Donte assigns roles and lets others carry pieces of the plan. What did recognition create?",
+      "options": ["Regulated delegation", "Total control", "Withdrawal", "Perfection pressure"],
+      "answer": "Regulated delegation",
+      "hint": "The boss is defeated when the player sees the state and chooses the healthier move."
+    }
+  ]
+}

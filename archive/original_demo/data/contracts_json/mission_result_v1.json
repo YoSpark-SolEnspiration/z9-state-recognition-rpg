@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "required_fields": [
+    "session_id",
+    "course_id",
+    "town_id",
+    "seed",
+    "score",
+    "tower",
+    "gym",
+    "disc_deltas",
+    "shards_earned",
+    "kah_progress"
+  ]
+}

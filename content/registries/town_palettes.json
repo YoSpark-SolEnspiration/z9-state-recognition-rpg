@@ -1,0 +1,14 @@
+{
+  "palettes": {
+    "default": {
+      "aura": "neutral",
+      "background": "stone",
+      "accent": "gold"
+    },
+    "course10_area1": {
+      "aura": "respark",
+      "background": "academy",
+      "accent": "emerald"
+    }
+  }
+}

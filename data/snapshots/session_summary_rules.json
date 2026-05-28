@@ -1,0 +1,12 @@
+{
+  "recognition_accuracy": {
+    "80_100": "Recognition stabilized under pressure",
+    "60_79": "Recognition emerging; pressure still changes visibility",
+    "0_59": "Recognition still depends on guided town clues"
+  },
+  "next_path": {
+    "passed": "Return Home and run a new state simulation",
+    "near_pass": "Retry Gym after reviewing Reaction Alley",
+    "needs_review": "Return to Explore, collect room flags, then retry Tower/Gym"
+  }
+}

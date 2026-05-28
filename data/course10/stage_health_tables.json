@@ -1,0 +1,42 @@
+[
+  {
+    "stage": 1,
+    "erikson": "Trust vs. Mistrust",
+    "health_focus": "Stable care, routine, sleep, nutrition, and trust-building consistency."
+  },
+  {
+    "stage": 2,
+    "erikson": "Autonomy vs. Shame & Doubt",
+    "health_focus": "Self-care choices, hygiene, movement, and confidence-building autonomy."
+  },
+  {
+    "stage": 3,
+    "erikson": "Initiative vs. Guilt",
+    "health_focus": "Structured activity, play, safe risk-taking, and flexible learning."
+  },
+  {
+    "stage": 4,
+    "erikson": "Industry vs. Inferiority",
+    "health_focus": "Confidence through effort, structured fitness, teamwork, and discipline."
+  },
+  {
+    "stage": 5,
+    "erikson": "Identity vs. Role Confusion",
+    "health_focus": "Health identity, sleep, nutrition, mentorship, and independent choices."
+  },
+  {
+    "stage": 6,
+    "erikson": "Intimacy vs. Isolation",
+    "health_focus": "Relationships, self-care routines, group wellness, and stress management."
+  },
+  {
+    "stage": 7,
+    "erikson": "Generativity vs. Stagnation",
+    "health_focus": "Burnout prevention, work-life balance, mobility, and cardiovascular health."
+  },
+  {
+    "stage": 8,
+    "erikson": "Integrity vs. Despair",
+    "health_focus": "Mobility, cognitive function, connection, legacy, and adaptive routines."
+  }
+]

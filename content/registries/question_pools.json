@@ -1,0 +1,29 @@
+{
+  "pools": {
+    "course10_gym_boss_v1": {
+      "id": "course10_gym_boss_v1",
+      "questions": [
+        { "id": "q01", "prompt": "Course10 Boss Q1 (demo)" },
+        { "id": "q02", "prompt": "Course10 Boss Q2 (demo)" },
+        { "id": "q03", "prompt": "Course10 Boss Q3 (demo)" },
+        { "id": "q04", "prompt": "Course10 Boss Q4 (demo)" },
+        { "id": "q05", "prompt": "Course10 Boss Q5 (demo)" },
+        { "id": "q06", "prompt": "Course10 Boss Q6 (demo)" },
+        { "id": "q07", "prompt": "Course10 Boss Q7 (demo)" },
+        { "id": "q08", "prompt": "Course10 Boss Q8 (demo)" },
+        { "id": "q09", "prompt": "Course10 Boss Q9 (demo)" },
+        { "id": "q10", "prompt": "Course10 Boss Q10 (demo)" },
+        { "id": "q11", "prompt": "Course10 Boss Q11 (demo)" },
+        { "id": "q12", "prompt": "Course10 Boss Q12 (demo)" },
+        { "id": "q13", "prompt": "Course10 Boss Q13 (demo)" },
+        { "id": "q14", "prompt": "Course10 Boss Q14 (demo)" },
+        { "id": "q15", "prompt": "Course10 Boss Q15 (demo)" },
+        { "id": "q16", "prompt": "Course10 Boss Q16 (demo)" },
+        { "id": "q17", "prompt": "Course10 Boss Q17 (demo)" },
+        { "id": "q18", "prompt": "Course10 Boss Q18 (demo)" },
+        { "id": "q19", "prompt": "Course10 Boss Q19 (demo)" },
+        { "id": "q20", "prompt": "Course10 Boss Q20 (demo)" }
+      ]
+    }
+  }
+}

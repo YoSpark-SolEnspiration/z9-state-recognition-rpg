@@ -1,0 +1,9 @@
+{
+  "title": "Gym Evaluation Rules",
+  "total_prompts": 15,
+  "required_correct": 12,
+  "pass_label": "Gym Leader Defeated",
+  "retry_label": "Retry Gym",
+  "rule": "12 correct out of 15 defeats the Gym Leader. 11 or below retries the Gym only, not the whole town.",
+  "snapshot_unlock": "pass"
+}

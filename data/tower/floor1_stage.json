@@ -1,0 +1,28 @@
+{
+  "title": "Floor 1: Stage Recognition",
+  "purpose": "Practice identifying the developmental pressure behind the selected state.",
+  "required_correct": 2,
+  "questions": [
+    {
+      "id": "stage_1_trust_pressure",
+      "prompt": "A character reacts as if help cannot be trusted and takes control before anyone can respond. Which stage pressure is most visible?",
+      "options": ["Trust vs. Mistrust", "Industry vs. Inferiority", "Identity vs. Role Confusion", "Integrity vs. Despair"],
+      "answer": "Trust vs. Mistrust",
+      "hint": "Look for safety, trust, dependence, and the fear that support will fail."
+    },
+    {
+      "id": "stage_1_stability_need",
+      "prompt": "The main need underneath the reaction is a stable, reliable environment. Which stage does this point toward?",
+      "options": ["Autonomy vs. Shame & Doubt", "Trust vs. Mistrust", "Generativity vs. Stagnation", "Initiative vs. Guilt"],
+      "answer": "Trust vs. Mistrust",
+      "hint": "Stage 1 centers on whether the world feels dependable."
+    },
+    {
+      "id": "stage_1_health_link",
+      "prompt": "In Course 10 terms, the healthiest response to this pressure is to rebuild consistency and reliable support. What is being restored?",
+      "options": ["Performance perfection", "Stable trust and routine", "Avoidance", "Public praise"],
+      "answer": "Stable trust and routine",
+      "hint": "Course 10 frames long-term health around sustainable routines and support."
+    }
+  ]
+}

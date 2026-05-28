@@ -1,0 +1,16 @@
+# FILE: .gitignore
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.env.*
+.streamlit/secrets.toml
+.DS_Store
+.vscode/
+.idea/
+*.log
+exports/
+reports/output/
+archive/deferred_unity/

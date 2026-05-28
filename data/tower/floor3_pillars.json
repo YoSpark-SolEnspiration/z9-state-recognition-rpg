@@ -1,0 +1,28 @@
+{
+  "title": "Floor 3: Pillar Recognition",
+  "purpose": "Practice seeing the same state through Z9 pillar lenses.",
+  "required_correct": 2,
+  "questions": [
+    {
+      "id": "pillar_dissonance",
+      "prompt": "He says he wants trust, but acts like nobody can be trusted. Which pillar lens best explains the split?",
+      "options": ["Cognitive Dissonance", "Social Learning", "Zone of Proximal Development", "Long-Term Goal Setting"],
+      "answer": "Cognitive Dissonance",
+      "hint": "Dissonance shows a split between stated value and performed behavior."
+    },
+    {
+      "id": "pillar_motivation",
+      "prompt": "A player keeps going because the goal is personally meaningful, not because of praise. Which Course 10/Z9 lens is strongest?",
+      "options": ["Intrinsic Motivation", "External Reward", "Avoidance", "Perfection"],
+      "answer": "Intrinsic Motivation",
+      "hint": "Course 10 emphasizes internal drive for long-term sustainability."
+    },
+    {
+      "id": "pillar_self_regulation",
+      "prompt": "The character notices urgency rising, pauses, and chooses a clearer response. Which lens is visible?",
+      "options": ["Self-Regulation", "Role Confusion", "Public Performance", "Withdrawal"],
+      "answer": "Self-Regulation",
+      "hint": "Self-regulation means managing behavior and emotion toward consistency."
+    }
+  ]
+}

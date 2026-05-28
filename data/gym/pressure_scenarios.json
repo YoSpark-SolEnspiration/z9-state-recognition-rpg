@@ -1,0 +1,27 @@
+{
+  "title": "Round 1: Warm Pressure",
+  "purpose": "Recognize the selected state when normal plans are disrupted.",
+  "questions": [
+    {
+      "id": "warm_pressure_plan_change",
+      "prompt": "The plan changes at the last minute. Donte immediately takes over and stops listening. What is the pressure pattern?",
+      "options": ["Healthy D direction", "Overdeveloped D control", "Underdeveloped S withdrawal", "Healthy C precision"],
+      "answer": "Overdeveloped D control",
+      "hint": "Control without listening usually signals overdeveloped D under pressure."
+    },
+    {
+      "id": "warm_pressure_trust",
+      "prompt": "Everyone is available to help, but Donte acts as if support will fail. Which stage pressure is most visible?",
+      "options": ["Trust vs. Mistrust", "Identity vs. Role Confusion", "Industry vs. Inferiority", "Integrity vs. Despair"],
+      "answer": "Trust vs. Mistrust",
+      "hint": "Stage 1 pressure asks whether support feels reliable."
+    },
+    {
+      "id": "warm_pressure_course10",
+      "prompt": "The healthiest Course 10 move is to adjust without abandoning the goal. Which concept is strongest?",
+      "options": ["Cognitive flexibility", "Perfection", "Avoidance", "Speed"],
+      "answer": "Cognitive flexibility",
+      "hint": "Cognitive flexibility means shifting strategy when conditions change."
+    }
+  ]
+}

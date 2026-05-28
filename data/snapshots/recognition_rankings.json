@@ -1,0 +1,8 @@
+{
+  "rankings": [
+    {"min_accuracy": 90, "label": "State Recognition Anchor"},
+    {"min_accuracy": 80, "label": "Pressure-Ready Recognition"},
+    {"min_accuracy": 60, "label": "Emerging Recognition"},
+    {"min_accuracy": 0, "label": "Town Review Recommended"}
+  ]
+}

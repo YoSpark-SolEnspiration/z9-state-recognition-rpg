@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "ui": {
+    "icons": [
+      { "id": "icon_explore", "label": "Explore" },
+      { "id": "icon_tower", "label": "Tower" },
+      { "id": "icon_gym", "label": "Gym" },
+      { "id": "icon_results", "label": "Results" }
+    ],
+    "screens": [
+      { "id": "town_home", "title": "Town Hub", "icons": ["icon_explore", "icon_tower", "icon_gym"], "north_exit": null, "south_exit": null },
+      { "id": "results", "title": "Results", "icons": ["icon_results"], "north_exit": null, "south_exit": "town_home" }
+    ],
+    "rules": {
+      "gymBoss": {
+        "pool_id": "course10_gym_boss_pool_70",
+        "questions_per_attempt": 15,
+        "pass_correct_min": 12,
+        "soft_fail_misses": 4,
+        "hard_fail_misses": 5,
+        "max_attempts_per_session": 3
+      }
+    }
+  }
+}

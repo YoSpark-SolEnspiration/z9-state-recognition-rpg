@@ -1,0 +1,553 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TownSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "town"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "spec_version": {
+      "type": "string"
+    },
+    "town": {
+      "$ref": "#/definitions/TownSpec"
+    }
+  },
+  "definitions": {
+    "TownSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "town_id",
+        "course_id",
+        "canonical_name",
+        "display_name",
+        "theme",
+        "determinism",
+        "world_model",
+        "unlock_rules",
+        "coverage",
+        "grading",
+        "analytics",
+        "areas"
+      ],
+      "properties": {
+        "town_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "course_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "theme": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tagline",
+            "tone",
+            "keywords"
+          ],
+          "properties": {
+            "tagline": {
+              "type": "string"
+            },
+            "tone": {
+              "type": "string"
+            },
+            "keywords": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "determinism": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id_policy",
+            "id_namespace",
+            "content_hash"
+          ],
+          "properties": {
+            "id_policy": {
+              "type": "string",
+              "enum": [
+                "deterministic"
+              ]
+            },
+            "id_namespace": {
+              "type": "string"
+            },
+            "content_hash": {
+              "type": "string"
+            }
+          }
+        },
+        "world_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "town_count_total",
+            "areas_per_town",
+            "area_stage_mapping",
+            "zones_reused_across_areas",
+            "completion_style",
+            "replayable"
+          ],
+          "properties": {
+            "town_count_total": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "areas_per_town": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "area_stage_mapping": {
+              "type": "string",
+              "enum": [
+                "erikson_1_to_8"
+              ]
+            },
+            "zones_reused_across_areas": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "school",
+                  "exploration",
+                  "battle_center",
+                  "gym"
+                ]
+              },
+              "minItems": 1
+            },
+            "completion_style": {
+              "type": "string",
+              "enum": [
+                "graded"
+              ]
+            },
+            "replayable": {
+              "type": "boolean"
+            }
+          }
+        },
+        "unlock_rules": {
+          "$ref": "#/definitions/UnlockRulesSpec"
+        },
+        "coverage": {
+          "$ref": "#/definitions/CoverageSpec"
+        },
+        "grading": {
+          "$ref": "#/definitions/TownGradeSpec"
+        },
+        "analytics": {
+          "$ref": "#/definitions/AnalyticsSpec"
+        },
+        "areas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/AreaSpec"
+          }
+        },
+        "runtime_contract_notes": {
+          "spec_is_immutable": true,
+          "runtime_state_is_separate": "TownState (progress/coverage/grades/unlocks) stored per user/session.",
+          "engine_reads": [
+            "town.town_id",
+            "town.world_model",
+            "town.coverage",
+            "town.grading",
+            "areas[].zones[].node_specs[]"
+          ],
+          "ui_derives": [
+            "progress bars",
+            "completion badges",
+            "recommended next zone",
+            "grade label formatting",
+            "area ordering (stage_index asc)"
+          ],
+          "runtime_computed": [
+            "node attempts",
+            "node score_pct",
+            "zone_clear status",
+            "zone_score_pct",
+            "town_coverage_pct",
+            "town_grade",
+            "unlocks_awarded"
+          ],
+          "ui": {
+            "rules": {
+              "gymBoss": {
+                "pool_id": "course10_gym_boss_v1",
+                "questions_per_attempt": 15,
+                "pass_correct_min": 12,
+                "soft_fail_misses": 4,
+                "hard_fail_misses": 5,
+                "max_attempts_per_session": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "UnlockRulesSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unlock_next_town_on_grade_at_least",
+        "unlock_elite8_on_grade_at_least",
+        "unlock_time_trials_on_grade_at_least",
+        "unlock_open_review_on_grade_at_least"
+      ],
+      "properties": {
+        "unlock_next_town_on_grade_at_least": {
+          "type": "string"
+        },
+        "unlock_elite8_on_grade_at_least": {
+          "type": "string"
+        },
+        "unlock_time_trials_on_grade_at_least": {
+          "type": "string"
+        },
+        "unlock_open_review_on_grade_at_least": {
+          "type": "string"
+        }
+      }
+    },
+    "AreaSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "area_id",
+        "stage_index",
+        "stage_label",
+        "area_display_name",
+        "area_theme_note",
+        "zones"
+      ],
+      "properties": {
+        "area_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stage_index": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "stage_label": {
+          "type": "string"
+        },
+        "area_display_name": {
+          "type": "string"
+        },
+        "area_theme_note": {
+          "type": "string"
+        },
+        "zones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ZoneSpec"
+          }
+        }
+      }
+    },
+    "ZoneSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zone_id",
+        "zone_type",
+        "display_name",
+        "objective",
+        "node_specs"
+      ],
+      "properties": {
+        "zone_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "zone_type": {
+          "type": "string",
+          "enum": [
+            "school",
+            "exploration",
+            "battle_center",
+            "gym"
+          ]
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "objective": {
+          "type": "string"
+        },
+        "node_specs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NodeSpec"
+          }
+        }
+      }
+    },
+    "NodeSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node_id",
+        "playtype",
+        "prompt",
+        "difficulty",
+        "tags",
+        "scoring"
+      ],
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "playtype": {
+          "type": "string",
+          "enum": [
+            "single_action_puzzle",
+            "guided_multi_action_puzzle",
+            "scenario_encounter",
+            "reflection_resolution",
+            "matching_mapping",
+            "world_rule_overlay",
+            "lens_switching"
+          ]
+        },
+        "prompt": {
+          "type": "string"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "max_score",
+            "pass_score"
+          ],
+          "properties": {
+            "max_score": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "pass_score": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "CoverageSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_policy",
+        "zone_type_weights",
+        "zone_clear_rules"
+      ],
+      "properties": {
+        "coverage_policy": {
+          "type": "string",
+          "enum": [
+            "weighted_by_zone_type"
+          ]
+        },
+        "zone_type_weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "school",
+            "exploration",
+            "battle_center",
+            "gym"
+          ],
+          "properties": {
+            "school": {
+              "type": "number",
+              "minimum": 0
+            },
+            "exploration": {
+              "type": "number",
+              "minimum": 0
+            },
+            "battle_center": {
+              "type": "number",
+              "minimum": 0
+            },
+            "gym": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "zone_clear_rules": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "school",
+            "exploration",
+            "battle_center",
+            "gym"
+          ],
+          "properties": {
+            "school": {
+              "$ref": "#/definitions/ZoneClearRule"
+            },
+            "exploration": {
+              "$ref": "#/definitions/ZoneClearRule"
+            },
+            "battle_center": {
+              "$ref": "#/definitions/ZoneClearRule"
+            },
+            "gym": {
+              "$ref": "#/definitions/ZoneClearRule"
+            }
+          }
+        }
+      }
+    },
+    "ZoneClearRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "min_node_completions",
+        "min_score_pct"
+      ],
+      "properties": {
+        "min_node_completions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "min_score_pct": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "TownGradeSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grade_metric",
+        "grades"
+      ],
+      "properties": {
+        "grade_metric": {
+          "type": "string",
+          "enum": [
+            "town_coverage_pct"
+          ]
+        },
+        "grades": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/GradeBand"
+          }
+        }
+      }
+    },
+    "GradeBand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grade",
+        "min_pct",
+        "label"
+      ],
+      "properties": {
+        "grade": {
+          "type": "string"
+        },
+        "min_pct": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "AnalyticsSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "taxonomy_version",
+        "dimensions",
+        "recommended_events"
+      ],
+      "properties": {
+        "taxonomy_version": {
+          "type": "string"
+        },
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "recommended_events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnalyticsEventSpec"
+          }
+        }
+      }
+    },
+    "AnalyticsEventSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_name",
+        "params"
+      ],
+      "properties": {
+        "event_name": {
+          "type": "string"
+        },
+        "params": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "course10_recognition_village",
+  "title": "Course 10 Recognition Village",
+  "purpose": "Teach long-term sustainability and state recognition before Tower and Gym testing.",
+  "rooms": [
+    "vocab_hall",
+    "story_square",
+    "reaction_alley",
+    "pillar_market"
+  ],
+  "final_gate": "battle_tower"
+}

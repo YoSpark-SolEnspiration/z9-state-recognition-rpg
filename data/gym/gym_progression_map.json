@@ -1,0 +1,9 @@
+{
+  "rounds": [
+    {"key": "warm_pressure", "order": 1, "title": "Warm Pressure"},
+    {"key": "mixed_ohu", "order": 2, "title": "Mixed OHU"},
+    {"key": "story_pressure", "order": 3, "title": "Story Pressure"},
+    {"key": "gym_leader", "order": 4, "title": "Gym Leader"}
+  ],
+  "snapshot_unlock_rule": "12_correct_out_of_15"
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Floor 2: DISC Recognition",
+  "purpose": "Practice identifying DISC expression without judging the person.",
+  "required_correct": 2,
+  "questions": [
+    {
+      "id": "disc_d_control",
+      "prompt": "The character moves fast, takes charge, and becomes forceful when the room feels uncertain. Which DISC expression is showing?",
+      "options": ["D - Drive/Control", "I - Expression/Influence", "S - Stability/Support", "C - Precision/Compliance"],
+      "answer": "D - Drive/Control",
+      "hint": "D pressure often appears as command, urgency, and control."
+    },
+    {
+      "id": "disc_d_healthy",
+      "prompt": "Which response shows a healthier D expression?",
+      "options": ["Move. I’ll do it myself.", "Nobody listens anyway.", "What matters most right now?", "Let’s pretend it is fine."],
+      "answer": "What matters most right now?",
+      "hint": "Healthy D clarifies priority without overpowering the room."
+    },
+    {
+      "id": "disc_not_trivia",
+      "prompt": "The goal of this floor is not trivia. What are you practicing?",
+      "options": ["Memorizing labels", "Recognizing behavior patterns", "Guessing personality", "Winning by speed"],
+      "answer": "Recognizing behavior patterns",
+      "hint": "The core mechanic is state recognition."
+    }
+  ]
+}

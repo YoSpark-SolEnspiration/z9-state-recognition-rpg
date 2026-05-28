@@ -1,0 +1,22 @@
+{
+  "version": "v1",
+  "town_id": "course10_area1",
+  "node_bindings": [
+    { "slot_id": "school_gate_plaque", "node_id": "c10_school_gate", "content_id": "C10_RULES_OVERLAY", "npc_id": "npc_default" },
+
+    { "slot_id": "explore_vocab_1", "node_id": "c10_vocab_1", "content_id": "C10_VOCAB_1", "npc_id": "npc_vocab_1" },
+    { "slot_id": "explore_vocab_2", "node_id": "c10_vocab_2", "content_id": "C10_VOCAB_2", "npc_id": "npc_vocab_2" },
+    { "slot_id": "explore_vocab_3", "node_id": "c10_vocab_3", "content_id": "C10_VOCAB_3", "npc_id": "npc_vocab_3" },
+
+    { "slot_id": "battle_tower_L1_matching", "node_id": "c10_tower_l1", "content_id": "C10_TOWER_L1", "npc_id": "npc_default" },
+    { "slot_id": "battle_tower_L2_mc", "node_id": "c10_tower_l2", "content_id": "C10_TOWER_L2", "npc_id": "npc_default" },
+    { "slot_id": "battle_tower_L3_short_answer", "node_id": "c10_tower_l3", "content_id": "C10_TOWER_L3", "npc_id": "npc_default" },
+    { "slot_id": "battle_tower_L4_scenarios", "node_id": "c10_tower_l4", "content_id": "C10_TOWER_L4", "npc_id": "npc_default" },
+    { "slot_id": "battle_tower_L5_top4_reflection", "node_id": "c10_tower_top", "content_id": "C10_TOWER_TOP", "npc_id": "npc_default" },
+
+    { "slot_id": "gym_L1", "node_id": "c10_gym_l1", "content_id": "C10_GYM_L1", "npc_id": "npc_default" },
+    { "slot_id": "gym_L2", "node_id": "c10_gym_l2", "content_id": "C10_GYM_L2", "npc_id": "npc_default" },
+    { "slot_id": "gym_L3", "node_id": "c10_gym_l3", "content_id": "C10_GYM_L3", "npc_id": "npc_default" },
+    { "slot_id": "gym_L4_boss", "node_id": "c10_gym_boss", "content_id": "C10_GYM_BOSS", "npc_id": "npc_default" }
+  ]
+}

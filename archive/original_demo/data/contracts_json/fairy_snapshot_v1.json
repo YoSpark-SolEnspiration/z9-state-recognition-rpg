@@ -1,0 +1,29 @@
+# runtime/loaders/load_townspec.py
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any, Dict
+
+from runtime.validators.validate_townspec import validate_townspec
+
+JsonDict = Dict[str, Any]
+
+
+def load_and_validate_townspec(townspec_path: str, schema_path: str) -> JsonDict:
+    """
+    Load TownSpec JSON from disk and validate it against the authoritative schema.
+
+    Fail-closed:
+      - FileNotFoundError if missing paths
+      - json.JSONDecodeError if invalid JSON
+      - jsonschema.ValidationError if schema mismatch
+    """
+    t_path = Path(townspec_path)
+    s_path = Path(schema_path)
+
+    townspec: JsonDict = json.loads(t_path.read_text(encoding="utf-8"))
+    schema: JsonDict = json.loads(s_path.read_text(encoding="utf-8"))
+
+    validate_townspec(townspec, schema)
+    return townspec

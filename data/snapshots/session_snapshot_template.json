@@ -1,0 +1,14 @@
+{
+  "title": "Z9 State Recognition Session Snapshot",
+  "purpose": "Summarize the gameplay session after the player practices and tests recognition.",
+  "fields": [
+    "selected_state",
+    "rooms_explored",
+    "tower_progress",
+    "gym_results",
+    "recognition_accuracy",
+    "ohu_recognition_pattern",
+    "state_movement",
+    "next_path"
+  ]
+}

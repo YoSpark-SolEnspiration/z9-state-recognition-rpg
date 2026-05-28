@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sustainability",
+    "term": "Sustainability",
+    "definition": "The ability to maintain health behaviors over time.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "intrinsic_motivation",
+    "term": "Intrinsic Motivation",
+    "definition": "Personal drive that sustains long-term goals.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "self_regulation",
+    "term": "Self-Regulation",
+    "definition": "Managing behaviors and emotions to achieve consistency.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "resilience",
+    "term": "Resilience",
+    "definition": "Recovering from setbacks and persisting in health habits.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "habit_formation",
+    "term": "Habit Formation",
+    "definition": "Developing automatic behaviors through repetition.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "behavioral_adaptation",
+    "term": "Behavioral Adaptation",
+    "definition": "Adjusting habits in response to life changes.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "cognitive_flexibility",
+    "term": "Cognitive Flexibility",
+    "definition": "Shifting strategies when needed to maintain progress.",
+    "room": "vocab_hall"
+  },
+  {
+    "id": "accountability_systems",
+    "term": "Accountability Systems",
+    "definition": "External structures that help maintain motivation and discipline.",
+    "room": "vocab_hall"
+  }
+]
