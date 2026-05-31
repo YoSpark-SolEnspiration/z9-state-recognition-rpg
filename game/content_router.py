@@ -132,34 +132,90 @@ def make_question(
     }
 
 
+def _as_option_text(value: Any, fallback: str = "selected pattern") -> str:
+    if value is None:
+        return fallback
+    return str(value)
+
+
+def _pressure_pack() -> dict[str, Any]:
+    pack = _load_json("pressure_variation_templates.json")
+    return dict(pack) if isinstance(pack, dict) else {}
+
+
+def _tower_template_pack() -> dict[str, Any]:
+    pack = _load_json("tower_question_templates.json")
+    return dict(pack) if isinstance(pack, dict) else {}
+
+
+def _gym_leader_pack(state: dict[str, Any]) -> dict[str, Any]:
+    pack = _load_json("gym_leader_scene_templates.json")
+    disc = get_disc_type(state)
+    default = pack.get("D", {}) if isinstance(pack, dict) else {}
+    return dict(pack.get(disc, default)) if isinstance(pack, dict) else {}
+
+
 def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
     profile = type_profile(state)
     stage = stage_pressure(state)
     reactions = ohu_reactions(state)
+    templates = _tower_template_pack()
+    pressure_pack = _pressure_pack()
+
     npc = selected_npc(state)
     disc = get_disc_type(state)
+    subtype = get_subtype(state)
+    ohu = get_ohu(state)
 
-    stage_name = stage.get("name", "Trust vs. Mistrust")
-    stage_need = stage.get("core_need", "stable support")
-    type_pattern = profile.get("pressure_pattern", "takes control when uncertain")
+    stage_name = _as_option_text(stage.get("name"), "Trust vs. Mistrust")
+    stage_need = _as_option_text(stage.get("core_need"), "stable support")
+    stage_question = _as_option_text(stage.get("question"), "Can I trust what is around me?")
+    stage_pressure_label = _as_option_text(stage.get("pressure"), "stage pressure")
+    stage_shadow = _as_option_text(stage.get("shadow"), "support may fail")
+    healthy_move = _as_option_text(stage.get("healthy_move"), "choose the next useful step")
+    type_pattern = _as_option_text(profile.get("pressure_pattern"), "takes control when uncertain")
+    language = _as_option_text(profile.get("language"), "state language")
+    doorway = _as_option_text(profile.get("doorway"), f"{disc} doorway")
 
-    healthy = reactions.get("Healthy", "What matters most right now?")
-    over = reactions.get("Overdeveloped", "Move. I will handle it myself.")
-    under = reactions.get("Underdeveloped", "Forget it. Nobody listens anyway.")
+    healthy = _as_option_text(reactions.get("Healthy"), "What matters most right now?")
+    over = _as_option_text(reactions.get("Overdeveloped"), "Move. I will handle it myself.")
+    under = _as_option_text(reactions.get("Underdeveloped"), "Forget it. Nobody listens anyway.")
+
+    stage_frames = templates.get("floor1_stage", {}).get("frames", [])
+    disc_frames = templates.get("floor2_disc", {}).get("frames", [])
+    pillar_frames = templates.get("floor3_pillars", {}).get("frames", [])
+    ohu_frames = templates.get("floor4_ohu", {}).get("frames", [])
+
+    def frame(frames: list[str], idx: int, fallback: str) -> str:
+        template = frames[idx] if idx < len(frames) else fallback
+        return template.format(
+            npc=npc,
+            disc=disc,
+            subtype=subtype,
+            ohu=ohu,
+            language=language,
+            doorway=doorway,
+            pressure=stage_pressure_label,
+            stage_name=stage_name,
+            stage_question=stage_question,
+            shadow=stage_shadow,
+            type_pattern=type_pattern,
+            stage_need=stage_need,
+        )
 
     return {
         "floor1_stage": [
             make_question(
                 qid="stage_1",
-                prompt=f"{npc} reacts as if {stage.get('shadow', 'support may fail')}. Which stage pressure is most visible?",
+                prompt=frame(stage_frames, 0, f"{npc} is reacting through {stage_pressure_label}. Which stage pressure is most visible?"),
                 answer=stage_name,
-                options=[stage_name, "Trust vs. Mistrust", "Identity vs. Role Confusion", "Generativity vs. Stagnation"],
+                options=[stage_name, stage_question, "Identity vs. Role Confusion", "Integrity vs. Despair"],
                 state=state,
                 lens="stage",
             ),
             make_question(
                 qid="stage_2",
-                prompt=f"The main need underneath the reaction is {stage_need}. What is the player learning to recognize?",
+                prompt=frame(stage_frames, 1, f"The scene asks: {stage_question}. What core need is underneath it?"),
                 answer=stage_need,
                 options=[stage_need, "public praise", "perfect performance", "avoidance of feedback"],
                 state=state,
@@ -167,9 +223,9 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
             ),
             make_question(
                 qid="stage_3",
-                prompt=f"In Course 10 terms, the healthiest response is to adapt while restoring {stage_need}. Which concept fits?",
-                answer="sustainable adaptation",
-                options=["sustainable adaptation", "speed at all costs", "emotional bypassing", "static perfection"],
+                prompt=frame(stage_frames, 2, f"The shadow cue is {stage_shadow}. What healthy move stabilizes it?"),
+                answer=healthy_move,
+                options=[healthy_move, "speed at all costs", "emotional bypassing", "static perfection"],
                 state=state,
                 lens="stage",
             ),
@@ -177,7 +233,7 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
         "floor2_disc": [
             make_question(
                 qid="disc_1",
-                prompt=f"{npc} {type_pattern}. Which DISC expression is showing?",
+                prompt=frame(disc_frames, 0, f"{npc}'s first move shows {language}. Which DISC expression is showing?"),
                 answer=f"{disc} expression",
                 options=["D expression", "I expression", "S expression", "C expression"],
                 state=state,
@@ -185,17 +241,17 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
             ),
             make_question(
                 qid="disc_2",
-                prompt=f"Which response shows a healthier {disc} expression?",
-                answer=healthy,
-                options=[healthy, over, under, "Let's ignore the pressure."],
+                prompt=frame(disc_frames, 1, f"Under pressure, {npc} {type_pattern}. Which pattern is being rendered?"),
+                answer=type_pattern,
+                options=[type_pattern, "random mood swing", "only a preference", "unrelated behavior"],
                 state=state,
                 lens="disc",
             ),
             make_question(
                 qid="disc_3",
-                prompt="The goal of this floor is not trivia. What are you practicing?",
-                answer="recognizing behavior patterns",
-                options=["recognizing behavior patterns", "memorizing labels", "guessing personality", "winning by speed"],
+                prompt=frame(disc_frames, 2, f"Which response shows a healthier {disc} expression under {stage_pressure_label}?"),
+                answer=healthy,
+                options=[healthy, over, under, "Let's ignore the pressure."],
                 state=state,
                 lens="disc",
             ),
@@ -203,7 +259,7 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
         "floor3_pillars": [
             make_question(
                 qid="pillar_1",
-                prompt=f"{npc} says they want progress, but their pressure response blocks it. Which pillar lens best explains the split?",
+                prompt=frame(pillar_frames, 0, f"{npc} wants progress, but the pressure response blocks it. Which pillar explains the split?"),
                 answer="Cognitive Dissonance",
                 options=["Cognitive Dissonance", "Social Learning", "Zone of Proximal Development", "External Reward"],
                 state=state,
@@ -211,17 +267,17 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
             ),
             make_question(
                 qid="pillar_2",
-                prompt="A player keeps going because the goal is personally meaningful, not because of praise. Which Course 10/Z9 lens is strongest?",
-                answer="Intrinsic Motivation",
-                options=["Intrinsic Motivation", "External Reward", "Avoidance", "Perfection"],
+                prompt=frame(pillar_frames, 1, "The next step must stretch without breaking the player. Which pillar gives that scaffolding?"),
+                answer="Zone of Proximal Development",
+                options=["Zone of Proximal Development", "External Reward", "Avoidance", "Perfection"],
                 state=state,
                 lens="pillar",
             ),
             make_question(
                 qid="pillar_3",
-                prompt=f"{npc} notices pressure rising, pauses, and chooses a clearer response. Which lens is visible?",
-                answer="Self-Regulation",
-                options=["Self-Regulation", "Public Performance", "Withdrawal", "Role Confusion"],
+                prompt=frame(pillar_frames, 2, f"{npc} learns from a visible model in the room. Which pillar is active?"),
+                answer="Social Learning",
+                options=["Social Learning", "Self-Regulation", "Public Performance", "Role Confusion"],
                 state=state,
                 lens="pillar",
             ),
@@ -229,25 +285,25 @@ def tower_questions_for_state(state: dict[str, Any]) -> dict[str, list[dict[str,
         "floor4_ohu": [
             make_question(
                 qid="ohu_1",
-                prompt=f"The plan changes and {npc} says, '{over}' Which OHU expression is this?",
-                answer="Overdeveloped",
-                options=["Overdeveloped", "Healthy", "Underdeveloped", "Neutral"],
+                prompt=f"{ohu_frames[0] if ohu_frames else 'Which line is overdeveloped?'} Scene cue: {pressure_pack.get('mixed_ohu', {}).get('prompt', 'The same state shifts expression.')}",
+                answer=over,
+                options=[over, healthy, under, "Name the next useful step."],
                 state=state,
                 lens="ohu",
             ),
             make_question(
                 qid="ohu_2",
-                prompt=f"The plan changes and {npc} says, '{healthy}' Which OHU expression is this?",
-                answer="Healthy",
-                options=["Overdeveloped", "Healthy", "Underdeveloped", "Avoidant"],
+                prompt=ohu_frames[1] if len(ohu_frames) > 1 else "Which line is healthy?",
+                answer=healthy,
+                options=[over, healthy, under, "Avoid the scene completely."],
                 state=state,
                 lens="ohu",
             ),
             make_question(
                 qid="ohu_3",
-                prompt=f"The plan changes and {npc} says, '{under}' Which OHU expression is this?",
-                answer="Underdeveloped",
-                options=["Overdeveloped", "Healthy", "Underdeveloped", "Balanced"],
+                prompt=ohu_frames[2] if len(ohu_frames) > 2 else "Which line is underdeveloped?",
+                answer=under,
+                options=[over, healthy, under, "Force the answer."],
                 state=state,
                 lens="ohu",
             ),
@@ -259,39 +315,62 @@ def gym_questions_for_state(state: dict[str, Any]) -> list[dict[str, Any]]:
     profile = type_profile(state)
     stage = stage_pressure(state)
     reactions = ohu_reactions(state)
+    pressure_pack = _pressure_pack()
+    leader = _gym_leader_pack(state)
+
     npc = selected_npc(state)
     disc = get_disc_type(state)
+    subtype = get_subtype(state)
+    ohu = get_ohu(state)
 
-    stage_name = stage.get("name", "Trust vs. Mistrust")
-    stage_need = stage.get("core_need", "stable support")
-    type_pattern = profile.get("pressure_pattern", "takes control when uncertain")
+    stage_name = _as_option_text(stage.get("name"), "Trust vs. Mistrust")
+    stage_need = _as_option_text(stage.get("core_need"), "stable support")
+    stage_pressure_label = _as_option_text(stage.get("pressure"), "stage pressure")
+    stage_question = _as_option_text(stage.get("question"), "Can I trust what is around me?")
+    healthy_move = _as_option_text(stage.get("healthy_move"), "choose the next useful step")
+    type_pattern = _as_option_text(profile.get("pressure_pattern"), "takes control when uncertain")
+    doorway = _as_option_text(profile.get("doorway"), f"{disc} doorway")
+    language = _as_option_text(profile.get("language"), "state language")
 
-    healthy = reactions.get("Healthy", "What matters most right now?")
-    over = reactions.get("Overdeveloped", "Move. I will handle it myself.")
-    under = reactions.get("Underdeveloped", "Forget it. Nobody listens anyway.")
+    healthy = _as_option_text(reactions.get("Healthy"), "What matters most right now?")
+    over = _as_option_text(reactions.get("Overdeveloped"), "Move. I will handle it myself.")
+    under = _as_option_text(reactions.get("Underdeveloped"), "Forget it. Nobody listens anyway.")
+
+    leader_name = _as_option_text(leader.get("leader_name"), f"{npc} Mirror")
+    leader_pressure = _as_option_text(leader.get("opening_pressure"), type_pattern)
+    false_win = _as_option_text(leader.get("false_win"), "force the outcome")
+    defeat_condition = _as_option_text(leader.get("defeat_condition"), "recognition, not strength")
+    leader_resolution = _as_option_text(leader.get("healthy_resolution"), healthy)
+
+    warm_prompt = pressure_pack.get("warm_pressure", {}).get("prompt", "The room is supportive, but {npc}'s pattern still appears.").format(
+        npc=npc, doorway=doorway, pressure=stage_pressure_label
+    )
+    story_prompt = pressure_pack.get("story_pressure", {}).get("prompt", "{npc} carries {stage_name} across contexts.").format(
+        npc=npc, stage_name=stage_name
+    )
 
     raw = [
-        ("gym_01", f"Pressure rises and {npc} {type_pattern}. What is the visible pressure pattern?", f"{disc} pressure pattern"),
-        ("gym_02", f"{npc} behaves as if the missing resource threatens {stage_need}. Which stage pressure is active?", stage_name),
-        ("gym_03", "The healthiest Course 10 move is to adjust without abandoning the goal. Which concept is strongest?", "cognitive flexibility"),
-        ("gym_04", f"{npc} says, '{over}' Which OHU expression is showing?", "Overdeveloped"),
-        ("gym_05", f"{npc} says, '{healthy}' Which OHU expression is showing?", "Healthy"),
-        ("gym_06", f"{npc} says, '{under}' Which OHU expression is showing?", "Underdeveloped"),
-        ("gym_07", "Which lens notices belief and behavior moving in opposite directions?", "Cognitive Dissonance"),
-        ("gym_08", "Which lens notices the person pausing before choosing a response?", "Self-Regulation"),
-        ("gym_09", "Which lens notices the person learning from modeled behavior in the room?", "Social Learning"),
-        ("gym_10", "Which lens notices the next reachable skill with support?", "Zone of Proximal Development"),
-        ("gym_11", f"Which action best stabilizes {npc}'s selected state?", healthy),
-        ("gym_12", f"Which response shows the most rigid expression of {disc} pressure?", over),
-        ("gym_13", f"Which response shows collapsed or resigned expression of {disc} pressure?", under),
-        ("gym_14", "What is the real skill being tested?", "recognition under pressure"),
-        ("gym_15", "What should happen after recognition?", "choose a stabilizing next response"),
+        ("gym_01", f"{warm_prompt} What is the visible type pressure?", f"{disc} pressure pattern"),
+        ("gym_02", f"{npc} reacts as if {stage_need} is at risk. Which stage is active?", stage_name),
+        ("gym_03", f"The selected stage asks, '{stage_question}' Which move keeps the state adaptive?", healthy_move),
+        ("gym_04", f"Mixed OHU cue: '{over}' Which expression is showing?", "Overdeveloped"),
+        ("gym_05", f"Mixed OHU cue: '{healthy}' Which expression is showing?", "Healthy"),
+        ("gym_06", f"Mixed OHU cue: '{under}' Which expression is showing?", "Underdeveloped"),
+        ("gym_07", f"{npc} says the goal matters, but the pressure behavior blocks it. Which pillar catches that contradiction?", "Cognitive Dissonance"),
+        ("gym_08", f"{npc} pauses before reacting and chooses the next clean response. Which skill is visible?", "Self-Regulation"),
+        ("gym_09", f"The room sees {npc} model a healthier {disc} response. Which learning lens is active?", "Social Learning"),
+        ("gym_10", f"The next step supports {subtype} without forcing collapse. Which pillar fits?", "Zone of Proximal Development"),
+        ("gym_11", f"{story_prompt} Which line stabilizes the selected state?", healthy),
+        ("gym_12", f"{leader_name} {leader_pressure}. What false win is tempting the player?", false_win),
+        ("gym_13", f"Which response shows the selected state dropping into resignation or withholding?", under),
+        ("gym_14", f"What defeats {leader_name} in this demo?", defeat_condition),
+        ("gym_15", f"After the player recognizes {npc}'s {language}, what transformation completes the Gym?", leader_resolution),
     ]
 
     option_bank = {
         f"{disc} pressure pattern": [f"{disc} pressure pattern", "random mood swing", "only a content preference", "unrelated behavior"],
         stage_name: [stage_name, "Integrity vs. Despair", "Identity vs. Role Confusion", "Autonomy vs. Shame & Doubt"],
-        "cognitive flexibility": ["cognitive flexibility", "perfection", "avoidance", "speed"],
+        healthy_move: [healthy_move, "speed at all costs", "avoid the signal", "wait for certainty forever"],
         "Overdeveloped": ["Overdeveloped", "Healthy", "Underdeveloped", "Neutral"],
         "Healthy": ["Overdeveloped", "Healthy", "Underdeveloped", "Avoidant"],
         "Underdeveloped": ["Overdeveloped", "Healthy", "Underdeveloped", "Balanced"],
@@ -302,12 +381,12 @@ def gym_questions_for_state(state: dict[str, Any]) -> list[dict[str, Any]]:
         healthy: [healthy, over, under, "Ignore the pressure."],
         over: [over, healthy, under, "Pause and ask for context."],
         under: [under, healthy, over, "Name the next useful step."],
-        "recognition under pressure": ["recognition under pressure", "memorizing labels", "speed clicking", "personality judgment"],
-        "choose a stabilizing next response": ["choose a stabilizing next response", "assign blame", "hide the state", "increase pressure"],
+        false_win: [false_win, leader_resolution, healthy, "slow down and recognize the state"],
+        defeat_condition: [defeat_condition, "memorizing labels", "speed clicking", "personality judgment"],
+        leader_resolution: [leader_resolution, false_win, under, "increase pressure"],
     }
 
     questions = []
-
     for qid, prompt, answer in raw:
         questions.append(
             make_question(
@@ -350,20 +429,44 @@ def build_story_room_content(active_state: dict[str, Any] | None) -> dict[str, A
     state = active_state or {}
     profile = type_profile(state)
     stage = stage_pressure(state)
+    reactions = ohu_reactions(state)
+    scene_templates = _load_json("ptype_scene_templates.json")
+    scene_index = _load_json("narrative_scene_index.json")
+
+    disc = get_disc_type(state)
+    subtype = get_subtype(state)
+    ohu = get_ohu(state)
     npc = selected_npc(state)
+    contexts = scene_templates.get("room_order", ["Individual", "Personal", "Professional", "Leader"])
+    shapes = scene_templates.get("scene_shapes", {})
+    index = scene_index.get(disc, {})
+
+    scene_cards = []
+    for context in contexts:
+        scene_cards.append({
+            "context": context,
+            "cue": shapes.get(context, "The selected state becomes visible in a new context."),
+            "visible_state": profile.get("pressure_pattern", "selected pressure pattern"),
+            "recognition_move": profile.get("healthy_pattern", reactions.get("Healthy", "Name the state and choose the next useful response.")),
+        })
 
     return {
         "title": "Story Square",
-        "kicker": "Recognition Scene",
-        "source": "state_content/explore_room_templates.json",
+        "kicker": f"{npc} Recognition Scene",
+        "source": "state_content/ptype_scene_templates.json + narrative_scene_index.json",
         "npc": npc,
+        "subtype": subtype,
+        "stage": get_stage(state),
+        "ohu": ohu,
         "body": (
-            f"{npc} enters a scene where {stage.get('shadow', 'pressure is active')}. "
-            f"The player watches for {profile.get('pressure_pattern', 'the selected pressure pattern')} "
-            f"without reducing the character to a label."
+            f"{npc} carries {subtype} through {stage.get('name', 'the selected stage')} pressure. "
+            f"The scene asks the player to spot {profile.get('language', 'the selected state language')} "
+            f"as it shifts through {ohu} expression, not to judge the character."
         ),
-        "recognition_prompt": "What state pattern is becoming visible in the scene?",
+        "recognition_prompt": f"Where does {npc}'s {index.get('anchor', profile.get('doorway', disc))} state become visible first?",
         "correct_pattern": profile.get("pressure_pattern", "selected state pressure"),
+        "healthy_resolution": profile.get("healthy_pattern", reactions.get("Healthy", "Choose the stabilizing response.")),
+        "scene_cards": scene_cards,
     }
 
 

@@ -1,0 +1,227 @@
+{
+  "version": "checkpoint_3_recognition_forms_v1",
+  "families": {
+    "D": {
+      "name": "Action / Fire Sword",
+      "color": "#C2412D",
+      "accent": "#F0B35A",
+      "keywords": [
+        "action",
+        "protection",
+        "pressure",
+        "decision"
+      ]
+    },
+    "I": {
+      "name": "Expression / Magic",
+      "color": "#7C4DFF",
+      "accent": "#E989FF",
+      "keywords": [
+        "expression",
+        "energy",
+        "connection",
+        "possibility"
+      ]
+    },
+    "S": {
+      "name": "Support / Wood Green",
+      "color": "#2E8B57",
+      "accent": "#9EDB8F",
+      "keywords": [
+        "support",
+        "stability",
+        "care",
+        "regulation"
+      ]
+    },
+    "C": {
+      "name": "Structure / Blue Hood",
+      "color": "#2D6CDF",
+      "accent": "#7FD6FF",
+      "keywords": [
+        "precision",
+        "analysis",
+        "standards",
+        "clarity"
+      ]
+    }
+  },
+  "forms": {
+    "DD": {
+      "code": "DD",
+      "anchor_character": "donte",
+      "primary_disc": "D",
+      "overlay_disc": "D",
+      "family": "Action / Fire Sword",
+      "label": "Direct action pressure",
+      "placeholder_asset": "assets/placeholders/forms/DD.png",
+      "final_asset_slot": "assets/recognition_forms/DD.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "DI": {
+      "code": "DI",
+      "anchor_character": "donte",
+      "primary_disc": "D",
+      "overlay_disc": "I",
+      "family": "Expression / Magic",
+      "label": "Action expressed through influence",
+      "placeholder_asset": "assets/placeholders/forms/DI.png",
+      "final_asset_slot": "assets/recognition_forms/DI.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "DS": {
+      "code": "DS",
+      "anchor_character": "donte",
+      "primary_disc": "D",
+      "overlay_disc": "S",
+      "family": "Support / Wood Green",
+      "label": "Protective support in motion",
+      "placeholder_asset": "assets/placeholders/forms/DS.png",
+      "final_asset_slot": "assets/recognition_forms/DS.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "DC": {
+      "code": "DC",
+      "anchor_character": "donte",
+      "primary_disc": "D",
+      "overlay_disc": "C",
+      "family": "Structure / Blue Hood",
+      "label": "Action governed by precision",
+      "placeholder_asset": "assets/placeholders/forms/DC.png",
+      "final_asset_slot": "assets/recognition_forms/DC.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "ID": {
+      "code": "ID",
+      "anchor_character": "isaac",
+      "primary_disc": "I",
+      "overlay_disc": "D",
+      "family": "Action / Fire Sword",
+      "label": "Expression pushed into action",
+      "placeholder_asset": "assets/placeholders/forms/ID.png",
+      "final_asset_slot": "assets/recognition_forms/ID.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "II": {
+      "code": "II",
+      "anchor_character": "isaac",
+      "primary_disc": "I",
+      "overlay_disc": "I",
+      "family": "Expression / Magic",
+      "label": "Pure expressive connection",
+      "placeholder_asset": "assets/placeholders/forms/II.png",
+      "final_asset_slot": "assets/recognition_forms/II.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "IS": {
+      "code": "IS",
+      "anchor_character": "isaac",
+      "primary_disc": "I",
+      "overlay_disc": "S",
+      "family": "Support / Wood Green",
+      "label": "Expression softened into support",
+      "placeholder_asset": "assets/placeholders/forms/IS.png",
+      "final_asset_slot": "assets/recognition_forms/IS.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "IC": {
+      "code": "IC",
+      "anchor_character": "isaac",
+      "primary_disc": "I",
+      "overlay_disc": "C",
+      "family": "Structure / Blue Hood",
+      "label": "Expression filtered through analysis",
+      "placeholder_asset": "assets/placeholders/forms/IC.png",
+      "final_asset_slot": "assets/recognition_forms/IC.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "SD": {
+      "code": "SD",
+      "anchor_character": "samantha",
+      "primary_disc": "S",
+      "overlay_disc": "D",
+      "family": "Action / Fire Sword",
+      "label": "Support moved into protection",
+      "placeholder_asset": "assets/placeholders/forms/SD.png",
+      "final_asset_slot": "assets/recognition_forms/SD.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "SI": {
+      "code": "SI",
+      "anchor_character": "samantha",
+      "primary_disc": "S",
+      "overlay_disc": "I",
+      "family": "Expression / Magic",
+      "label": "Support expressed socially",
+      "placeholder_asset": "assets/placeholders/forms/SI.png",
+      "final_asset_slot": "assets/recognition_forms/SI.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "SS": {
+      "code": "SS",
+      "anchor_character": "samantha",
+      "primary_disc": "S",
+      "overlay_disc": "S",
+      "family": "Support / Wood Green",
+      "label": "Pure steady regulation",
+      "placeholder_asset": "assets/placeholders/forms/SS.png",
+      "final_asset_slot": "assets/recognition_forms/SS.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "SC": {
+      "code": "SC",
+      "anchor_character": "samantha",
+      "primary_disc": "S",
+      "overlay_disc": "C",
+      "family": "Structure / Blue Hood",
+      "label": "Support stabilized by precision",
+      "placeholder_asset": "assets/placeholders/forms/SC.png",
+      "final_asset_slot": "assets/recognition_forms/SC.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "CD": {
+      "code": "CD",
+      "anchor_character": "caleb",
+      "primary_disc": "C",
+      "overlay_disc": "D",
+      "family": "Action / Fire Sword",
+      "label": "Structure moved into action",
+      "placeholder_asset": "assets/placeholders/forms/CD.png",
+      "final_asset_slot": "assets/recognition_forms/CD.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "CI": {
+      "code": "CI",
+      "anchor_character": "caleb",
+      "primary_disc": "C",
+      "overlay_disc": "I",
+      "family": "Expression / Magic",
+      "label": "Structure expressed through possibility",
+      "placeholder_asset": "assets/placeholders/forms/CI.png",
+      "final_asset_slot": "assets/recognition_forms/CI.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "CS": {
+      "code": "CS",
+      "anchor_character": "caleb",
+      "primary_disc": "C",
+      "overlay_disc": "S",
+      "family": "Support / Wood Green",
+      "label": "Structure serving stability",
+      "placeholder_asset": "assets/placeholders/forms/CS.png",
+      "final_asset_slot": "assets/recognition_forms/CS.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    },
+    "CC": {
+      "code": "CC",
+      "anchor_character": "caleb",
+      "primary_disc": "C",
+      "overlay_disc": "C",
+      "family": "Structure / Blue Hood",
+      "label": "Pure precision and standards",
+      "placeholder_asset": "assets/placeholders/forms/CC.png",
+      "final_asset_slot": "assets/recognition_forms/CC.png",
+      "visual_rule": "Same character identity; state changes through posture, expression, energy, and overlay cues."
+    }
+  }
+}

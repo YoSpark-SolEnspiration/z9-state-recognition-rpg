@@ -5,7 +5,8 @@ import streamlit as st
 
 from app_state import get_active_town_state, set_screen
 from game.town_state import build_town_overview
-from ui.components import card, hero, progress_steps
+from ui.components import card, hero, progress_steps, state_pill
+from ui.visual_assets import render_visual_identity_card, render_visual_identity_strip
 
 
 def render_town_screen() -> None:
@@ -28,8 +29,14 @@ def render_town_screen() -> None:
         town["kicker"],
     )
 
-    st.markdown(f"**Active State:** {state['label']}")
-    st.markdown(town["purpose"])
+    visual_col, state_col = st.columns([0.34, 0.66])
+    with visual_col:
+        render_visual_identity_card(state, title="Town Anchor", compact=True, screen="town")
+    with state_col:
+        st.markdown("**Active State**")
+        state_pill(state["label"])
+        render_visual_identity_strip(state, screen="town")
+        st.markdown(town["purpose"])
 
     cols = st.columns(4)
 

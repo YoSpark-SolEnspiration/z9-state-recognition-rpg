@@ -1,0 +1,150 @@
+{
+  "version": "checkpoint_3_asset_slots_v1",
+  "drop_rule": "Replace files at final_asset_slot paths without changing code.",
+  "slots": [
+    {
+      "slot_id": "core_donte",
+      "kind": "core_character",
+      "expected_path": "assets/core/donte.png",
+      "fallback_path": "assets/placeholders/core/donte.png"
+    },
+    {
+      "slot_id": "core_isaac",
+      "kind": "core_character",
+      "expected_path": "assets/core/isaac.png",
+      "fallback_path": "assets/placeholders/core/isaac.png"
+    },
+    {
+      "slot_id": "core_samantha",
+      "kind": "core_character",
+      "expected_path": "assets/core/samantha.png",
+      "fallback_path": "assets/placeholders/core/samantha.png"
+    },
+    {
+      "slot_id": "core_caleb",
+      "kind": "core_character",
+      "expected_path": "assets/core/caleb.png",
+      "fallback_path": "assets/placeholders/core/caleb.png"
+    },
+    {
+      "slot_id": "form_DD",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/DD.png",
+      "fallback_path": "assets/placeholders/forms/DD.png"
+    },
+    {
+      "slot_id": "form_DI",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/DI.png",
+      "fallback_path": "assets/placeholders/forms/DI.png"
+    },
+    {
+      "slot_id": "form_DS",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/DS.png",
+      "fallback_path": "assets/placeholders/forms/DS.png"
+    },
+    {
+      "slot_id": "form_DC",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/DC.png",
+      "fallback_path": "assets/placeholders/forms/DC.png"
+    },
+    {
+      "slot_id": "form_ID",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/ID.png",
+      "fallback_path": "assets/placeholders/forms/ID.png"
+    },
+    {
+      "slot_id": "form_II",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/II.png",
+      "fallback_path": "assets/placeholders/forms/II.png"
+    },
+    {
+      "slot_id": "form_IS",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/IS.png",
+      "fallback_path": "assets/placeholders/forms/IS.png"
+    },
+    {
+      "slot_id": "form_IC",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/IC.png",
+      "fallback_path": "assets/placeholders/forms/IC.png"
+    },
+    {
+      "slot_id": "form_SD",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/SD.png",
+      "fallback_path": "assets/placeholders/forms/SD.png"
+    },
+    {
+      "slot_id": "form_SI",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/SI.png",
+      "fallback_path": "assets/placeholders/forms/SI.png"
+    },
+    {
+      "slot_id": "form_SS",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/SS.png",
+      "fallback_path": "assets/placeholders/forms/SS.png"
+    },
+    {
+      "slot_id": "form_SC",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/SC.png",
+      "fallback_path": "assets/placeholders/forms/SC.png"
+    },
+    {
+      "slot_id": "form_CD",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/CD.png",
+      "fallback_path": "assets/placeholders/forms/CD.png"
+    },
+    {
+      "slot_id": "form_CI",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/CI.png",
+      "fallback_path": "assets/placeholders/forms/CI.png"
+    },
+    {
+      "slot_id": "form_CS",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/CS.png",
+      "fallback_path": "assets/placeholders/forms/CS.png"
+    },
+    {
+      "slot_id": "form_CC",
+      "kind": "recognition_form",
+      "expected_path": "assets/recognition_forms/CC.png",
+      "fallback_path": "assets/placeholders/forms/CC.png"
+    },
+    {
+      "slot_id": "town_default",
+      "kind": "town_visual",
+      "expected_path": "assets/town/default.png",
+      "fallback_path": "assets/placeholders/town/default.png"
+    },
+    {
+      "slot_id": "tower_default",
+      "kind": "tower_visual",
+      "expected_path": "assets/tower/default.png",
+      "fallback_path": "assets/placeholders/tower/default.png"
+    },
+    {
+      "slot_id": "gym_default",
+      "kind": "gym_visual",
+      "expected_path": "assets/gym/default.png",
+      "fallback_path": "assets/placeholders/gym/default.png"
+    },
+    {
+      "slot_id": "npc_default",
+      "kind": "npc_visual",
+      "expected_path": "assets/npc/default.png",
+      "fallback_path": "assets/placeholders/npc/default.png"
+    }
+  ]
+}

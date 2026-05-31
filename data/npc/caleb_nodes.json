@@ -1,5 +1,26 @@
 {
-  "character": "Caleb",
-  "type": "C",
-  "role": "Precision pressure and systems-state recognition."
+  "npc": "Caleb",
+  "primary_type": "C",
+  "anchor": "Structure / Precision",
+  "voice": "precise, measured, analytical",
+  "nodes": [
+    {
+      "ohu": "Overdeveloped",
+      "line": "Stop. This is not accurate enough to move forward.",
+      "recognition_target": "Overdeveloped",
+      "healthy_reframe": "Let us verify the next clean step and keep the system moving."
+    },
+    {
+      "ohu": "Healthy",
+      "line": "Let us verify the next clean step and keep the system moving.",
+      "recognition_target": "Healthy",
+      "healthy_reframe": "Let us verify the next clean step and keep the system moving."
+    },
+    {
+      "ohu": "Underdeveloped",
+      "line": "There is not enough clarity, so I will withhold until certainty appears.",
+      "recognition_target": "Underdeveloped",
+      "healthy_reframe": "Let us verify the next clean step and keep the system moving."
+    }
+  ]
 }

@@ -1,0 +1,26 @@
+{
+  "D": {
+    "npc": "Donte",
+    "anchor": "Action / Direction",
+    "recognition_goal": "names the priority and directs action without overpowering the room",
+    "pressure_error": "controls the room before trust has time to form"
+  },
+  "I": {
+    "npc": "Isaac",
+    "anchor": "Expression / Energy",
+    "recognition_goal": "uses expression to invite clarity and shared movement",
+    "pressure_error": "uses charm or noise to avoid the real pressure"
+  },
+  "S": {
+    "npc": "Samantha",
+    "anchor": "Support / Harmony",
+    "recognition_goal": "names what support is needed and keeps the group steady without disappearing",
+    "pressure_error": "absorbs pressure quietly until resentment or withdrawal appears"
+  },
+  "C": {
+    "npc": "Caleb",
+    "anchor": "Structure / Precision",
+    "recognition_goal": "clarifies the next accurate step without freezing the room",
+    "pressure_error": "over-checks the system until movement stalls"
+  }
+}

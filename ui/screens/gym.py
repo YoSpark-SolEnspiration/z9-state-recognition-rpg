@@ -5,14 +5,16 @@ import streamlit as st
 
 from app_state import get_active_town_state, set_screen
 from game.gym_engine import PASSING_SCORE, get_gym_questions, save_gym_results, score_gym
-from ui.components import progress_steps, section_card
+from runtime.session_flags import reset_gym_run
+from ui.components import nav_buttons, progress_steps, section_card, state_pill
+from ui.visual_assets import render_visual_identity_card, render_visual_identity_strip
 
 
 def render_gym_screen() -> None:
     active_state = get_active_town_state()
     if not active_state:
         st.warning("No active state selected.")
-        if st.button("Return to State Selector"):
+        if st.button("Return to State Selector", use_container_width=True):
             set_screen("state_selector")
             st.rerun()
         return
@@ -22,8 +24,15 @@ def render_gym_screen() -> None:
     st.title("Gym")
     st.caption("Recognition under pressure. The boss is defeated by recognizing the state, not overpowering it.")
 
-    section_card("Active State", active_state.get("label", "No active state"), "Gym Context")
-    st.info(f"Gym rule: 15 prompts. {PASSING_SCORE} correct defeats the Gym Leader. Retry Gym only if needed.")
+    visual_col, state_col = st.columns([0.28, 0.72])
+    with visual_col:
+        render_visual_identity_card(active_state, title="Gym Form", compact=True, screen="gym")
+    with state_col:
+        section_card("Gym Context", "Recognize the selected state under pressure.")
+        st.markdown("**Active State**")
+        state_pill(active_state.get("label", "No active state"))
+        render_visual_identity_strip(active_state, screen="gym")
+        st.info(f"Gym rule: 15 prompts. {PASSING_SCORE} correct defeats the Gym Leader. Retry Gym only if needed.")
 
     questions = get_gym_questions(active_state)
     answers = st.session_state.setdefault("gym_answers", {})
@@ -74,12 +83,14 @@ def render_gym_screen() -> None:
         f"{results.get('accuracy', 0)}%",
     )
 
-    c1, c2 = st.columns(2)
-    with c1:
-        if st.button("Back to Tower", use_container_width=True):
-            set_screen("battle_tower")
-            st.rerun()
-    with c2:
-        if st.button("View Snapshot", use_container_width=True):
-            set_screen("session_snapshot")
+    passed = bool(results.get("passed"))
+    if passed:
+        nav_buttons(back_label="Back to Tower", back_screen="battle_tower", next_label="View Snapshot", next_screen="session_snapshot", home=False)
+    else:
+        nav_buttons(back_label="Back to Tower", back_screen="battle_tower", home=False)
+
+    with st.expander("Gym controls"):
+        st.caption("Use only when you want to retry the same selected state under pressure.")
+        if st.button("Retry Gym", use_container_width=True):
+            reset_gym_run()
             st.rerun()

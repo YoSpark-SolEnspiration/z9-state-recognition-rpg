@@ -1,0 +1,41 @@
+{
+  "purpose": "Checkpoint 3 scene registry for rendering Explore rooms as visual state-recognition scenes.",
+  "rule": "Scenes are wrappers around routed content. They do not own scoring or state logic.",
+  "rooms": {
+    "default": {
+      "title": "Recognition Scene",
+      "kicker": "Town Scene",
+      "purpose": "Observe the selected state in lived context before testing recognition.",
+      "visual_rule": "The person remains the same; the active state changes through visible cues.",
+      "placeholder_asset": "assets/placeholders/scenes/default_scene.png"
+    },
+    "vocab_hall": {
+      "title": "Vocab Hall",
+      "kicker": "Meaning Scene",
+      "purpose": "Translate Course 10 language through the selected DISC family, stage pressure, and OHU expression.",
+      "visual_rule": "Meaning comes first: the player learns the vocabulary of the selected state before pressure arrives.",
+      "placeholder_asset": "assets/placeholders/scenes/vocab_hall.png"
+    },
+    "story_square": {
+      "title": "Story Square",
+      "kicker": "Behavior Scene",
+      "purpose": "Watch the selected anchor carry the state through individual, personal, professional, and leader contexts.",
+      "visual_rule": "The story does not change the person; it reveals how the same state behaves across contexts.",
+      "placeholder_asset": "assets/placeholders/scenes/story_square.png"
+    },
+    "reaction_alley": {
+      "title": "Reaction Alley",
+      "kicker": "OHU Scene",
+      "purpose": "Compare overdeveloped, healthy, and underdeveloped expressions of the same selected state.",
+      "visual_rule": "OHU changes the expression health, not the identity of the character.",
+      "placeholder_asset": "assets/placeholders/scenes/reaction_alley.png"
+    },
+    "pillar_market": {
+      "title": "Pillar Market",
+      "kicker": "Pillar Scene",
+      "purpose": "Read the selected state through the Z9 pillars before entering Tower and Gym validation.",
+      "visual_rule": "Each pillar is a lens: the state is the same, but the interpretation angle changes.",
+      "placeholder_asset": "assets/placeholders/scenes/pillar_market.png"
+    }
+  }
+}

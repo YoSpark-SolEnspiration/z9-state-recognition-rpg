@@ -4,7 +4,15 @@ from __future__ import annotations
 
 import streamlit as st
 
-from app_state import get_screen, init_session_state, set_screen
+from app_state import (
+    developer_mode_enabled,
+    get_active_town_state,
+    get_screen,
+    init_session_state,
+    set_developer_mode,
+    set_screen,
+)
+from runtime.route_state import get_visual_route_payload, screen_label
 from ui.layout import render_game_shell
 from ui.screens.battle_tower import render_battle_tower_screen
 from ui.screens.developer_panel import render_developer_panel_screen
@@ -27,6 +35,27 @@ SCREEN_RENDERERS = {
     "developer_panel": render_developer_panel_screen,
 }
 
+def _render_sidebar(screen: str) -> None:
+    with st.sidebar:
+        st.caption("Z9 Demo Controls")
+        st.write(f"Current screen: **{screen_label(screen)}**")
+        state = get_active_town_state()
+        if state:
+            st.caption(f"State: {state.get('label', 'Selected')}")
+            visual_route = get_visual_route_payload(state)
+            st.caption(f"Visual: {visual_route['selected_character']} · {visual_route['selected_form']}")
+
+        if st.button("Return Home", use_container_width=True):
+            set_screen("home")
+            st.rerun()
+
+        developer_enabled = st.toggle("Developer Mode", value=developer_mode_enabled())
+        set_developer_mode(developer_enabled)
+        if developer_enabled:
+            if st.button("Open Developer Panel", use_container_width=True):
+                set_screen("developer_panel")
+                st.rerun()
+
 def main() -> None:
     st.set_page_config(
         page_title="Z9 State Recognition RPG",
@@ -42,14 +71,7 @@ def main() -> None:
     with render_game_shell(screen):
         renderer()
 
-    with st.sidebar:
-        st.caption("Z9 Demo Controls")
-        if st.button("Home", use_container_width=True):
-            set_screen("home")
-            st.rerun()
-        if st.button("Developer Panel", use_container_width=True):
-            set_screen("developer_panel")
-            st.rerun()
+    _render_sidebar(screen)
 
 if __name__ == "__main__":
     main()

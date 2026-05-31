@@ -1,5 +1,26 @@
 {
-  "character": "Isaac",
-  "type": "I",
-  "role": "Expression pressure and social-state recognition."
+  "npc": "Isaac",
+  "primary_type": "I",
+  "anchor": "Expression / Energy",
+  "voice": "animated, warm, associative",
+  "nodes": [
+    {
+      "ohu": "Overdeveloped",
+      "line": "Watch me fix the energy before anyone notices the discomfort.",
+      "recognition_target": "Overdeveloped",
+      "healthy_reframe": "Let me name the feeling, invite the room in, and keep the goal alive."
+    },
+    {
+      "ohu": "Healthy",
+      "line": "Let me name the feeling, invite the room in, and keep the goal alive.",
+      "recognition_target": "Healthy",
+      "healthy_reframe": "Let me name the feeling, invite the room in, and keep the goal alive."
+    },
+    {
+      "ohu": "Underdeveloped",
+      "line": "If the room does not respond, I will shrink, joke it off, or disappear.",
+      "recognition_target": "Underdeveloped",
+      "healthy_reframe": "Let me name the feeling, invite the room in, and keep the goal alive."
+    }
+  ]
 }

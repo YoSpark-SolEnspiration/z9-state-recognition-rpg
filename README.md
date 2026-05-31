@@ -25,3 +25,44 @@ This package creates the clean gameplay-first repo structure, preserves required
 pip install -r requirements.txt
 streamlit run app.py
 ```
+
+## Checkpoint 2B Completion Patch
+
+This patch expands the demo content libraries so type, stage, and OHU routing no longer default to Donte/D-pressure language across the full loop.
+
+### Current Public Demo Flow
+Home → Manual State Selector → Town → Explore → Battle Tower → Gym → Session Snapshot → PDF/JSON Export → Return Home
+
+### Recognition Anchors
+- D routes to Donte: action, direction, urgency, ownership.
+- I routes to Isaac: expression, energy, morale, visibility.
+- S routes to Samantha: support, stability, pacing, trust.
+- C routes to Caleb: precision, standards, accuracy, structure.
+
+### Run Locally
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+
+### QA
+```bash
+python -m pytest -q
+```
+
+### Commit Run
+``` 
+git status
+
+git add .
+
+git commit -m "Checkpoint 3A - Images"
+
+git push origin main
+
+git tag -a checkpoint-3A -m "User Flow Locked"
+git push origin checkpoint-3A
+```
+
+Expected result for this patch: all tests pass, no archive imports, and the Streamlit entrypoint remains `app.py`.

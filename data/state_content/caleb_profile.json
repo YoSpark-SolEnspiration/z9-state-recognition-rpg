@@ -1,0 +1,17 @@
+{
+  "primary_type": "C",
+  "npc": "Caleb",
+  "disc_label": "Conscientiousness / Clarity",
+  "doorway": "Structure / Precision",
+  "language": "precision, accuracy, structure, standards, and pattern recognition",
+  "pressure_pattern": "slows the room down, checks details, and tightens standards when uncertainty rises",
+  "healthy_pattern": "clarifies the next accurate step without freezing the room",
+  "shadow_pattern": "over-checks the system until movement stalls",
+  "values": [
+    "accuracy",
+    "standards",
+    "clarity",
+    "evidence"
+  ],
+  "voice": "precise, measured, analytical"
+}

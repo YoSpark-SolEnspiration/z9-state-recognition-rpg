@@ -1,0 +1,17 @@
+{
+  "primary_type": "I",
+  "npc": "Isaac",
+  "disc_label": "Influence / Expression",
+  "doorway": "Expression / Energy",
+  "language": "expression, social energy, morale, visibility, and emotional momentum",
+  "pressure_pattern": "fills the room with energy, jokes, or performance when connection feels unstable",
+  "healthy_pattern": "uses expression to invite clarity and shared movement",
+  "shadow_pattern": "uses charm or noise to avoid the real pressure",
+  "values": [
+    "connection",
+    "visibility",
+    "morale",
+    "shared spark"
+  ],
+  "voice": "animated, warm, associative"
+}

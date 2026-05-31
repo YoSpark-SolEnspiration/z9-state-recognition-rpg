@@ -26,12 +26,12 @@ def render_game_shell(screen: str) -> Iterator[None]:
     active_label = state.get("label", "No active state") if state else "No active state"
 
     st.markdown('<div class="z9-shell">', unsafe_allow_html=True)
-    left, right = st.columns([0.70, 0.30], vertical_alignment="center")
+    left, right = st.columns([0.62, 0.38], vertical_alignment="center")
     with left:
         st.markdown('<div class="z9-kicker">Z9 State Recognition RPG</div>', unsafe_allow_html=True)
-        st.caption(f"Current Screen: {SCREEN_LABELS.get(screen, screen)}")
+        st.markdown(f'<div class="z9-small">Current Screen: {SCREEN_LABELS.get(screen, screen)}</div>', unsafe_allow_html=True)
     with right:
-        st.caption(f"Active Town State: {active_label}")
+        st.markdown(f'<div class="z9-small">Active Town State</div><span class="z9-state-pill">{active_label}</span>', unsafe_allow_html=True)
     st.divider()
     try:
         yield

@@ -6,6 +6,8 @@ import streamlit as st
 from app_state import set_active_town_state, set_screen
 from game.state_selector import DISC_TYPES, OHU_OPTIONS, STAGES, TYPE_NAMES, build_active_state, get_subtypes
 from ui.components import card, hero, progress_steps
+from ui.visual_assets import render_visual_identity_card
+from ui.visual_registry import visual_payload_for_state
 
 
 def render_state_selector_screen() -> None:
@@ -25,6 +27,9 @@ def render_state_selector_screen() -> None:
 
         payload = build_active_state(disc_type, subtype, stage, ohu)
 
+        visual = visual_payload_for_state(payload)
+        st.caption(f"Visual route: {visual['character_name']} · {visual['form_code']} · {visual['disc_family']}")
+
         if st.toggle("Developer: show active state payload", value=False):
             st.json(payload, expanded=False)
 
@@ -34,13 +39,14 @@ def render_state_selector_screen() -> None:
             st.rerun()
 
     with right:
+        render_visual_identity_card(payload, title="Selected Visual Route", screen="state_selector")
         card(
             "What this creates",
             "This selection becomes `active_town_state`. The Town, Explore rooms, Tower, Gym, and Session Snapshot all read from this state.",
             "Routing Contract",
         )
         card(
-            "Example",
-            "DD / Stage 1 / Overdeveloped loads a town that teaches overcontrolled D behavior under trust-pressure.",
-            "Demo State",
+            "Selected route preview",
+            f"{payload['label']} loads {visual['character_name']} as {visual['form_code']} through {visual['disc_family_color']} / {visual['disc_family']}. The town, Explore scenes, Tower, Gym, and Snapshot should all preserve this same route.",
+            "Live Demo State",
         )

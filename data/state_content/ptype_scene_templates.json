@@ -1,0 +1,14 @@
+{
+  "scene_shapes": {
+    "Individual": "The character reacts privately before anyone else can define the state.",
+    "Personal": "The same state leaks into a close relationship or familiar room.",
+    "Professional": "The state becomes visible through work, standards, roles, or delivery pressure.",
+    "Leader": "The character must decide whether to transmit the pattern or regulate it."
+  },
+  "room_order": [
+    "Individual",
+    "Personal",
+    "Professional",
+    "Leader"
+  ]
+}

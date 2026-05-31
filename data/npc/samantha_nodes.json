@@ -1,5 +1,26 @@
 {
-  "character": "Samantha",
-  "type": "S",
-  "role": "Support pressure and care-boundary recognition."
+  "npc": "Samantha",
+  "primary_type": "S",
+  "anchor": "Support / Harmony",
+  "voice": "steady, grounded, relational",
+  "nodes": [
+    {
+      "ohu": "Overdeveloped",
+      "line": "Do not disrupt the room; I will carry the pressure so nobody else has to.",
+      "recognition_target": "Overdeveloped",
+      "healthy_reframe": "Let us slow down, name what support is needed, and move steadily."
+    },
+    {
+      "ohu": "Healthy",
+      "line": "Let us slow down, name what support is needed, and move steadily.",
+      "recognition_target": "Healthy",
+      "healthy_reframe": "Let us slow down, name what support is needed, and move steadily."
+    },
+    {
+      "ohu": "Underdeveloped",
+      "line": "I will stay quiet, wait it out, and hope the pressure passes.",
+      "recognition_target": "Underdeveloped",
+      "healthy_reframe": "Let us slow down, name what support is needed, and move steadily."
+    }
+  ]
 }

@@ -1,18 +1,22 @@
 {
-  "purpose": "Checkpoint 2 OHU reaction language for selected-state recognition.",
-  "status": "deterministic_demo_layer_not_live_hsie",
-  "ohu": {
-    "Overdeveloped": {
-      "movement": "too much trait",
-      "recognition_key": "look for intensity, rigidity, overuse, or forced certainty"
-    },
-    "Healthy": {
-      "movement": "regulated trait",
-      "recognition_key": "look for flexibility, clarity, repair, and sustainable adjustment"
-    },
-    "Underdeveloped": {
-      "movement": "withheld trait",
-      "recognition_key": "look for withdrawal, resignation, helplessness, or muted expression"
-    }
+  "D": {
+    "Overdeveloped": "Move aside. I will force the decision before the room drifts.",
+    "Healthy": "Name the priority, assign the next step, and keep people with me.",
+    "Underdeveloped": "If I cannot control it, I will detach and stop owning the outcome."
+  },
+  "I": {
+    "Overdeveloped": "Watch me fix the energy before anyone notices the discomfort.",
+    "Healthy": "Let me name the feeling, invite the room in, and keep the goal alive.",
+    "Underdeveloped": "If the room does not respond, I will shrink, joke it off, or disappear."
+  },
+  "S": {
+    "Overdeveloped": "Do not disrupt the room; I will carry the pressure so nobody else has to.",
+    "Healthy": "Let us slow down, name what support is needed, and move steadily.",
+    "Underdeveloped": "I will stay quiet, wait it out, and hope the pressure passes."
+  },
+  "C": {
+    "Overdeveloped": "Stop. This is not accurate enough to move forward.",
+    "Healthy": "Let us verify the next clean step and keep the system moving.",
+    "Underdeveloped": "There is not enough clarity, so I will withhold until certainty appears."
   }
 }

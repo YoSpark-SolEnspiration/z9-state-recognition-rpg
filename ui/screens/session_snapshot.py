@@ -10,7 +10,9 @@ from game.session_summary import build_session_summary
 from reports.pdf_export import build_snapshot_pdf
 from reports.session_snapshot_builder import build_snapshot_payload
 from runtime.route_state import go_to
-from ui.components import progress_steps, section_card
+from ui.components import progress_steps, section_card, state_pill
+from ui.recognition_card import render_recognition_card
+from ui.visual_assets import render_visual_identity_strip
 
 
 def render_session_snapshot_screen() -> None:
@@ -29,7 +31,13 @@ def render_session_snapshot_screen() -> None:
             st.rerun()
         return
 
-    section_card("Town State", summary.get("state_label", "No state selected"), "Selected State")
+    visual_col, state_col = st.columns([0.28, 0.72])
+    with visual_col:
+        render_recognition_card(selected_state, title="Snapshot Form", screen="snapshot", mode="snapshot")
+    with state_col:
+        st.markdown("**Selected State**")
+        state_pill(summary.get("state_label", "No state selected"))
+        render_visual_identity_strip(selected_state, screen="snapshot")
 
     m1, m2, m3, m4 = st.columns(4)
     with m1:

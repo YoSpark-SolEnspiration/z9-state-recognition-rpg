@@ -11,6 +11,7 @@ DEFAULT_FLAGS: Dict[str, Any] = {
     "explore_flags": {},
     "tower_progress": {},
     "gym_progress": {},
+    "gym_answers": {},
     "gym_results": {},
     "snapshot_ready": False,
 }
@@ -49,11 +50,19 @@ def mark_explore_flag(flag_key: str, value: Any = True) -> None:
     set_explore_flag(flag_key, value)
 
 
+def reset_explore_flags() -> None:
+    st.session_state["explore_flags"] = {}
+
+
 def mark_tower_floor(floor_key: str, result: Dict[str, Any]) -> None:
     init_session_flags()
     progress = dict(st.session_state.get("tower_progress", {}))
     progress[floor_key] = result
     st.session_state["tower_progress"] = progress
+
+
+def reset_tower_progress() -> None:
+    st.session_state["tower_progress"] = {}
 
 
 def mark_gym_round(round_key: str, result: Dict[str, Any]) -> None:
@@ -62,6 +71,13 @@ def mark_gym_round(round_key: str, result: Dict[str, Any]) -> None:
     progress[round_key] = result
     st.session_state["gym_progress"] = progress
     st.session_state["gym_results"] = progress
+
+
+def reset_gym_run() -> None:
+    st.session_state["gym_progress"] = {}
+    st.session_state["gym_answers"] = {}
+    st.session_state["gym_results"] = {}
+    st.session_state["snapshot_ready"] = False
 
 
 def set_snapshot_ready(value: bool = True) -> None:

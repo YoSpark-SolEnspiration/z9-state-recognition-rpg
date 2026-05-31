@@ -1,0 +1,17 @@
+{
+  "primary_type": "S",
+  "npc": "Samantha",
+  "disc_label": "Steadiness / Support",
+  "doorway": "Support / Harmony",
+  "language": "stability, care, pacing, trust, routine, and relational safety",
+  "pressure_pattern": "tries to stabilize everyone, delays disruption, and protects the room from sudden change",
+  "healthy_pattern": "names what support is needed and keeps the group steady without disappearing",
+  "shadow_pattern": "absorbs pressure quietly until resentment or withdrawal appears",
+  "values": [
+    "care",
+    "pace",
+    "trust",
+    "relational safety"
+  ],
+  "voice": "steady, grounded, relational"
+}

@@ -1,9 +1,9 @@
 {
-  "purpose": "Checkpoint 2 state-aware Explore room library seed.",
-  "status": "expanded_in_batch_10",
+  "purpose": "Checkpoint 2B state-aware Explore room library seed.",
+  "status": "expanded_for_ptype_scene_ingestion",
   "rooms": {
     "vocab_hall": "Course 10 concepts translated through selected DISC, subtype, stage, and OHU.",
-    "story_square": "NPC scene grammar selected by primary type character, subtype tone, stage pressure, and OHU expression.",
+    "story_square": "Playable NPC scene grammar selected by primary type character, subtype tone, stage pressure, and OHU expression.",
     "reaction_alley": "Overdeveloped, healthy, and underdeveloped response comparison for selected type and stage pressure.",
     "pillar_market": "Nine-pillar interpretation of the selected state with state-specific body text."
   },
@@ -23,5 +23,5 @@
     "Cognitive Flexibility",
     "Accountability Systems"
   ],
-  "next_checkpoint_note": "This is still deterministic demo content. It prepares the overlay packet shape before live HSIE or Sol's Odyssey integration."
+  "checkpoint_2b_note": "Explore now points to routed type, stage, OHU, and PType scene libraries. Long stories are not pasted into player flow; story logic is converted into recognition scenes."
 }

@@ -1,0 +1,34 @@
+{
+  "floor1_stage": {
+    "title": "Stage Recognition",
+    "frames": [
+      "{npc} is not just reacting to the event. The reaction is organized around {pressure}. Which stage is underneath it?",
+      "The scene asks, '{stage_question}' Which developmental stage is the player reading?",
+      "The pressure cue is {shadow}. What stage name matches that developmental question?"
+    ]
+  },
+  "floor2_disc": {
+    "title": "DISC Recognition",
+    "frames": [
+      "{npc}'s first move shows {language}. Which DISC doorway is visible?",
+      "Under pressure, {npc} {type_pattern}. Which primary type pattern is being rendered?",
+      "Which healthy response keeps the {disc} pattern useful instead of reactive?"
+    ]
+  },
+  "floor3_pillars": {
+    "title": "Pillar Recognition",
+    "frames": [
+      "The behavior says one thing while the stated value says another. Which pillar catches that split?",
+      "The next step must stretch without breaking the player. Which pillar gives that scaffolding?",
+      "{npc} learns from a visible model in the room. Which pillar is active?"
+    ]
+  },
+  "floor4_ohu": {
+    "title": "OHU Recognition",
+    "frames": [
+      "The same state shifts expression. Which line is overdeveloped?",
+      "The same state shifts expression. Which line is healthy?",
+      "The same state shifts expression. Which line is underdeveloped?"
+    ]
+  }
+}

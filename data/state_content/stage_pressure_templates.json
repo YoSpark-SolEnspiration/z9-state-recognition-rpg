@@ -1,14 +1,66 @@
 {
-  "purpose": "Checkpoint 2 stage-pressure language for the browser demo.",
-  "status": "deterministic_demo_layer_not_live_hsie",
-  "stages": {
-    "1": {"name": "Trust vs. Mistrust", "pressure": "support may not be reliable", "need": "stable trust and routine"},
-    "2": {"name": "Autonomy vs. Shame & Doubt", "pressure": "choice may lead to shame", "need": "safe autonomy and flexible self-direction"},
-    "3": {"name": "Initiative vs. Guilt", "pressure": "acting first may create guilt", "need": "supported initiative and safe risk-taking"},
-    "4": {"name": "Industry vs. Inferiority", "pressure": "effort may not be enough", "need": "confidence through practice and effort"},
-    "5": {"name": "Identity vs. Role Confusion", "pressure": "identity feels unstable or unseen", "need": "clear health identity and values alignment"},
-    "6": {"name": "Intimacy vs. Isolation", "pressure": "connection may cost self-care or independence", "need": "healthy relationship support and sustainable routines"},
-    "7": {"name": "Generativity vs. Stagnation", "pressure": "care for others may crowd out renewal", "need": "purposeful contribution with burnout prevention"},
-    "8": {"name": "Integrity vs. Despair", "pressure": "the past may feel fixed or wasted", "need": "adapted purpose, mobility, and meaning"}
+  "1": {
+    "name": "Trust vs. Mistrust",
+    "question": "Can I trust what is around me?",
+    "core_need": "reliable safety",
+    "shadow": "support may fail or disappear",
+    "pressure": "trust pressure",
+    "healthy_move": "test the signal before reacting"
+  },
+  "2": {
+    "name": "Autonomy vs. Shame & Doubt",
+    "question": "Can I act without shame or hesitation?",
+    "core_need": "permission to choose",
+    "shadow": "choice may lead to embarrassment or correction",
+    "pressure": "autonomy pressure",
+    "healthy_move": "take one owned step without overcorrecting"
+  },
+  "3": {
+    "name": "Initiative vs. Guilt",
+    "question": "Is it safe for me to step forward and initiate?",
+    "core_need": "permission to begin",
+    "shadow": "initiative may create blame, guilt, or social cost",
+    "pressure": "initiative pressure",
+    "healthy_move": "initiate with context and repair if needed"
+  },
+  "4": {
+    "name": "Industry vs. Inferiority",
+    "question": "Am I capable of doing things well?",
+    "core_need": "competence without collapse",
+    "shadow": "performance may prove inadequacy",
+    "pressure": "competence pressure",
+    "healthy_move": "separate worth from the result"
+  },
+  "5": {
+    "name": "Identity vs. Role Confusion",
+    "question": "Who am I when the role is not enough?",
+    "core_need": "identity clarity",
+    "shadow": "the role may replace the self",
+    "pressure": "identity pressure",
+    "healthy_move": "choose from values instead of image"
+  },
+  "6": {
+    "name": "Intimacy vs. Isolation",
+    "question": "Can I be known and still stay intact?",
+    "core_need": "safe closeness",
+    "shadow": "closeness may cost control, image, peace, or certainty",
+    "pressure": "relationship pressure",
+    "healthy_move": "stay present without abandoning self"
+  },
+  "7": {
+    "name": "Generativity vs. Stagnation",
+    "question": "Am I making a meaningful impact?",
+    "core_need": "meaningful contribution",
+    "shadow": "effort may not matter or may not transfer",
+    "pressure": "impact pressure",
+    "healthy_move": "make one useful contribution that can outlive the moment"
+  },
+  "8": {
+    "name": "Integrity vs. Despair",
+    "question": "Can I look back with peace and pride?",
+    "core_need": "integration and acceptance",
+    "shadow": "the pattern may feel wasted, unresolved, or too late",
+    "pressure": "integration pressure",
+    "healthy_move": "name the lesson and choose the next honest action"
   }
 }

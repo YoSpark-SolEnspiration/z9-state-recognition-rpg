@@ -1,5 +1,26 @@
 {
-  "character": "Donte",
-  "type": "D",
-  "role": "Direction pressure and action-state recognition."
+  "npc": "Donte",
+  "primary_type": "D",
+  "anchor": "Action / Direction",
+  "voice": "direct, clipped, accountable",
+  "nodes": [
+    {
+      "ohu": "Overdeveloped",
+      "line": "Move aside. I will force the decision before the room drifts.",
+      "recognition_target": "Overdeveloped",
+      "healthy_reframe": "Name the priority, assign the next step, and keep people with me."
+    },
+    {
+      "ohu": "Healthy",
+      "line": "Name the priority, assign the next step, and keep people with me.",
+      "recognition_target": "Healthy",
+      "healthy_reframe": "Name the priority, assign the next step, and keep people with me."
+    },
+    {
+      "ohu": "Underdeveloped",
+      "line": "If I cannot control it, I will detach and stop owning the outcome.",
+      "recognition_target": "Underdeveloped",
+      "healthy_reframe": "Name the priority, assign the next step, and keep people with me."
+    }
+  ]
 }

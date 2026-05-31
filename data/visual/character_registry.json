@@ -1,0 +1,82 @@
+{
+  "version": "checkpoint_3_visual_registry_v1",
+  "principle": "The person remains constant while the visible state expression changes.",
+  "characters": {
+    "donte": {
+      "display_name": "Donte",
+      "primary_disc": "D",
+      "narrative_role": "Core Four state-recognition anchor",
+      "identity_lock": [
+        "face",
+        "hair",
+        "body language",
+        "core silhouette",
+        "personality signal"
+      ],
+      "base_asset": "assets/placeholders/core/donte.png",
+      "supported_forms": [
+        "DD",
+        "DI",
+        "DS",
+        "DC"
+      ]
+    },
+    "isaac": {
+      "display_name": "Isaac",
+      "primary_disc": "I",
+      "narrative_role": "Core Four state-recognition anchor",
+      "identity_lock": [
+        "face",
+        "hair",
+        "body language",
+        "core silhouette",
+        "personality signal"
+      ],
+      "base_asset": "assets/placeholders/core/isaac.png",
+      "supported_forms": [
+        "ID",
+        "II",
+        "IS",
+        "IC"
+      ]
+    },
+    "samantha": {
+      "display_name": "Samantha",
+      "primary_disc": "S",
+      "narrative_role": "Core Four state-recognition anchor",
+      "identity_lock": [
+        "face",
+        "hair",
+        "body language",
+        "core silhouette",
+        "personality signal"
+      ],
+      "base_asset": "assets/placeholders/core/samantha.png",
+      "supported_forms": [
+        "SD",
+        "SI",
+        "SS",
+        "SC"
+      ]
+    },
+    "caleb": {
+      "display_name": "Caleb",
+      "primary_disc": "C",
+      "narrative_role": "Core Four state-recognition anchor",
+      "identity_lock": [
+        "face",
+        "hair",
+        "body language",
+        "core silhouette",
+        "personality signal"
+      ],
+      "base_asset": "assets/placeholders/core/caleb.png",
+      "supported_forms": [
+        "CD",
+        "CI",
+        "CS",
+        "CC"
+      ]
+    }
+  }
+}

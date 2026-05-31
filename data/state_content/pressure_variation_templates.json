@@ -1,0 +1,22 @@
+{
+  "warm_pressure": {
+    "label": "Warm Pressure",
+    "prompt": "The room is supportive, but {npc}'s {doorway} pattern still becomes visible through {pressure}.",
+    "recognition_goal": "recognize the state before judging the behavior"
+  },
+  "mixed_ohu": {
+    "label": "Mixed OHU",
+    "prompt": "The same selected state produces three different expressions: overextended, balanced, and withdrawn.",
+    "recognition_goal": "separate OHU expression from the person"
+  },
+  "story_pressure": {
+    "label": "Story Pressure",
+    "prompt": "{npc} carries {stage_name} across individual, personal, professional, and leader contexts.",
+    "recognition_goal": "track the same state across changing scenes"
+  },
+  "gym_leader_transformation": {
+    "label": "Gym Leader Transformation",
+    "prompt": "The Gym Leader changes once the player names the state pattern correctly.",
+    "recognition_goal": "defeat pressure with recognition, not force"
+  }
+}

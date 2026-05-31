@@ -1,0 +1,30 @@
+{
+  "D": {
+    "leader_name": "Donte Mirror",
+    "opening_pressure": "rushes the room toward a decision before trust catches up",
+    "false_win": "force the outcome faster",
+    "defeat_condition": "recognition, not strength",
+    "healthy_resolution": "names the priority and directs action without overpowering the room"
+  },
+  "I": {
+    "leader_name": "Isaac Mirror",
+    "opening_pressure": "turns the discomfort into energy before the real signal is named",
+    "false_win": "perform harder until the room responds",
+    "defeat_condition": "recognition, not attention",
+    "healthy_resolution": "uses expression to invite clarity and shared movement"
+  },
+  "S": {
+    "leader_name": "Samantha Mirror",
+    "opening_pressure": "absorbs the tension to keep everyone else steady",
+    "false_win": "carry the pressure silently so the room stays calm",
+    "defeat_condition": "recognition, not endurance",
+    "healthy_resolution": "names what support is needed and keeps the group steady without disappearing"
+  },
+  "C": {
+    "leader_name": "Caleb Mirror",
+    "opening_pressure": "tightens standards until uncertainty has nowhere to hide",
+    "false_win": "delay movement until every variable is controlled",
+    "defeat_condition": "recognition, not perfection",
+    "healthy_resolution": "clarifies the next accurate step without freezing the room"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "primary_type": "D",
+  "npc": "Donte",
+  "disc_label": "Dominance / Direction",
+  "doorway": "Action / Direction",
+  "language": "drive, urgency, control, ownership, and decisive movement",
+  "pressure_pattern": "moves fast, takes charge, and becomes forceful when the room feels uncertain",
+  "healthy_pattern": "names the priority and directs action without overpowering the room",
+  "shadow_pattern": "controls the room before trust has time to form",
+  "values": [
+    "ownership",
+    "clarity",
+    "decisive movement",
+    "protective force"
+  ],
+  "voice": "direct, clipped, accountable"
+}
