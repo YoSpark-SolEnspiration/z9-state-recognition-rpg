@@ -7,8 +7,10 @@ from typing import Any, Dict
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
+from reportlab.lib.utils import ImageReader
 
 from reports.session_snapshot_builder import build_snapshot_payload, snapshot_lines
+from reports.visual_report_helpers import visual_snapshot_lines
 from reports.templates.snapshot_styles import GOLD, SLATE, CREAM
 
 
@@ -40,13 +42,36 @@ def build_snapshot_pdf(summary: Dict[str, Any]) -> bytes:
     c.line(margin, y, width - margin, y)
     y -= 26
 
+    visual = payload.get("visual_state", {})
+    asset_path = visual.get("asset_path") if isinstance(visual, dict) else None
+
     c.setFillColor(CREAM)
     c.setFont("Helvetica-Bold", 12)
     c.drawString(margin, y, f"State: {payload.get('state_label', '')}")
-    y -= 22
+    y -= 20
+
+    if isinstance(visual, dict) and visual:
+        c.setFillColor(GOLD)
+        c.setFont("Helvetica-Bold", 11)
+        c.drawString(margin, y, f"Visual Form: {visual.get('character', 'Unknown')} / {visual.get('form', '--')}")
+        y -= 16
+        c.setFillColor(CREAM)
+        c.setFont("Helvetica", 9)
+        for visual_line in visual_snapshot_lines(visual)[1:]:
+            c.drawString(margin, y, visual_line[:96])
+            y -= 13
+
+        if asset_path:
+            try:
+                img = ImageReader(asset_path)
+                box = 1.18 * inch
+                c.drawImage(img, width - margin - box, height - margin - 1.62 * inch, box, box, preserveAspectRatio=True, mask="auto")
+            except Exception:
+                pass
+        y -= 10
 
     c.setFont("Helvetica", 10)
-    for line in snapshot_lines(payload)[3:]:
+    for line in snapshot_lines(payload)[7 if isinstance(visual, dict) and visual else 3:]:
         if y < margin:
             c.showPage()
             c.setFillColor(SLATE)

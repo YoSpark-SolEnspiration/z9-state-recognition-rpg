@@ -4,16 +4,20 @@ from __future__ import annotations
 from typing import Any, Dict, List
 
 from reports.templates.snapshot_sections import build_snapshot_sections
+from reports.visual_report_helpers import build_visual_snapshot, visual_snapshot_lines
 
 
 def build_snapshot_payload(summary: Dict[str, Any]) -> Dict[str, Any]:
     """Normalize the session summary into a report-ready payload."""
+
+    visual_state = build_visual_snapshot(summary.get("selected_state", {}))
 
     return {
         "title": "Z9 State Recognition Session Snapshot",
         "subtitle": "Gameplay proof report",
         "state_label": summary.get("state_label", "No state selected"),
         "selected_state": summary.get("selected_state", {}),
+        "visual_state": visual_state,
         "metrics": {
             "rooms_explored": f"{summary.get('rooms_explored', 0)} / {summary.get('rooms_total', 4)}",
             "tower": f"{summary.get('tower', {}).get('correct', 0)} / {summary.get('tower', {}).get('total', 0)}",
@@ -27,6 +31,9 @@ def build_snapshot_payload(summary: Dict[str, Any]) -> Dict[str, Any]:
 def snapshot_lines(payload: Dict[str, Any]) -> List[str]:
     lines = [payload.get("title", "Session Snapshot"), payload.get("subtitle", "")]
     lines.append(f"State: {payload.get('state_label', '')}")
+    visual = payload.get("visual_state", {})
+    if visual:
+        lines.extend(visual_snapshot_lines(visual))
     lines.append("")
     for key, value in payload.get("metrics", {}).items():
         lines.append(f"{key.replace('_', ' ').title()}: {value}")

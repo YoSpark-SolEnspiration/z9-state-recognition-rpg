@@ -18,6 +18,7 @@ from game.tower_engine import (
 from runtime.session_flags import reset_tower_progress
 from ui.components import nav_buttons, progress_steps, state_pill
 from ui.visual_assets import render_visual_identity_card, render_visual_identity_strip
+from ui.tower_gate import render_tower_gate
 
 
 def _session_dict() -> dict[str, Any]:
@@ -70,6 +71,7 @@ def render_battle_tower_screen() -> None:
                 st.rerun()
 
     st.divider()
+    render_tower_gate(active_state, floor_id=floor_id)
     st.subheader(floor_labels.get(floor_id, "Tower Floor"))
     st.write(floor_descriptions.get(floor_id, ""))
 

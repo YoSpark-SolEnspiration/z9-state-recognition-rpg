@@ -57,12 +57,12 @@ git status
 
 git add .
 
-git commit -m "Checkpoint 3A - Images"
+git commit -m "Checkpoint 4A - Images and Scenes"
 
 git push origin main
 
-git tag -a checkpoint-3A -m "User Flow Locked"
-git push origin checkpoint-3A
+git tag -a checkpoint-4A -m "Image Flow Locked"
+git push origin checkpoint-4A
 ```
 
 Expected result for this patch: all tests pass, no archive imports, and the Streamlit entrypoint remains `app.py`.

@@ -13,6 +13,7 @@ from runtime.route_state import go_to
 from ui.components import progress_steps, section_card, state_pill
 from ui.recognition_card import render_recognition_card
 from ui.visual_assets import render_visual_identity_strip
+from reports.visual_report_helpers import build_visual_snapshot
 
 
 def render_session_snapshot_screen() -> None:
@@ -38,6 +39,13 @@ def render_session_snapshot_screen() -> None:
         st.markdown("**Selected State**")
         state_pill(summary.get("state_label", "No state selected"))
         render_visual_identity_strip(selected_state, screen="snapshot")
+
+    visual_report = build_visual_snapshot(selected_state)
+    st.markdown("**Report Visual Proof**")
+    st.caption(
+        f"Export will carry {visual_report.get('character')} / {visual_report.get('form')} "
+        f"as the visible state proof for this session."
+    )
 
     m1, m2, m3, m4 = st.columns(4)
     with m1:

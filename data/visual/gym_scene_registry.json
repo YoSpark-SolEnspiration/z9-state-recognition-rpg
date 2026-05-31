@@ -1,0 +1,34 @@
+{
+  "version": "18FG",
+  "purpose": "Visual registry for the Gym applied-practice arena. This registry does not own scoring or question generation.",
+  "screens": {
+    "gym": {
+      "title": "Applied Practice Arena",
+      "kicker": "Gym",
+      "purpose": "The Gym tests the same selected state under pressure and transformation.",
+      "final_asset": "assets/gym/gym_arena.png",
+      "placeholder_asset": "assets/placeholders/gym/gym_arena.png",
+      "leader_final_asset": "assets/gym/gym_leader.png",
+      "leader_placeholder_asset": "assets/placeholders/gym/gym_leader.png",
+      "rule": "The Gym Leader is defeated by recognition, not force. The player must keep the same state visible under pressure."
+    }
+  },
+  "round_visuals": {
+    "warm_pressure": {
+      "label": "Warm Pressure",
+      "signal": "The state appears in a normal but slightly strained situation."
+    },
+    "mixed_ohu": {
+      "label": "Mixed OHU",
+      "signal": "The same character/form may drift across overdeveloped, healthy, or underdeveloped signals."
+    },
+    "story_pressure": {
+      "label": "Story Pressure",
+      "signal": "The state appears through a lived scene instead of a label."
+    },
+    "gym_leader": {
+      "label": "Gym Leader Transformation",
+      "signal": "Recognition must hold when the pressure presentation changes."
+    }
+  }
+}

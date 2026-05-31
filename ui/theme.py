@@ -462,6 +462,49 @@ hr {
   font-size: .9rem;
 }
 
+.z9-tower-gate,
+.z9-gym-arena {
+  border: 1px solid rgba(232,201,122,.42);
+  border-radius: 26px;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(201,168,76,.14), transparent 58%),
+    linear-gradient(145deg, rgba(16,18,22,.98), rgba(7,8,9,.86));
+  box-shadow: 0 16px 44px rgba(0,0,0,.36), inset 0 0 0 1px rgba(255,248,234,.025);
+  margin: .75rem 0 1.1rem 0;
+}
+
+.z9-tower-gate h3,
+.z9-gym-arena h3 {
+  margin: .22rem 0 .75rem 0;
+  color: var(--z9-cream);
+}
+
+.z9-tower-gate img,
+.z9-gym-arena img {
+  border-radius: 18px;
+  border: 1px solid rgba(232,201,122,.24);
+  background: rgba(7,8,9,.42);
+}
+
+.z9-tower-signal,
+.z9-round-brief {
+  border: 1px solid rgba(232,201,122,.25);
+  border-radius: 16px;
+  padding: .72rem .82rem;
+  background: rgba(245,240,232,.05);
+  color: var(--z9-text);
+  margin: .65rem 0 .85rem 0;
+}
+
+.z9-round-brief strong {
+  color: var(--z9-cream);
+}
+
+.z9-round-brief span {
+  color: var(--z9-muted);
+}
+
 
 </style>
 """

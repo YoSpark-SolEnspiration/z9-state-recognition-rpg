@@ -1,0 +1,40 @@
+{
+  "version": "18FG",
+  "purpose": "Visual registry for the Battle Tower recognition gate. This registry does not own scoring or question generation.",
+  "screens": {
+    "battle_tower": {
+      "title": "Recognition Gate",
+      "kicker": "Battle Tower",
+      "purpose": "The Tower checks whether the player can recognize the selected state through stage, type, pillar, and OHU signals.",
+      "final_asset": "assets/tower/recognition_gate.png",
+      "placeholder_asset": "assets/placeholders/tower/recognition_gate.png",
+      "rule": "Advance by recognition. The selected character/form remains visible while the questions test the state from different angles."
+    },
+    "tower_gate": {
+      "title": "Tower Gate",
+      "kicker": "Entry Gate",
+      "purpose": "A visual threshold between town observation and formal recognition practice.",
+      "final_asset": "assets/tower/tower_gate.png",
+      "placeholder_asset": "assets/placeholders/tower/tower_gate.png",
+      "rule": "The gate does not change the selected state; it frames the same state as a challenge."
+    }
+  },
+  "floor_visuals": {
+    "floor1_stage": {
+      "label": "Stage Gate",
+      "signal": "Developmental pressure becomes visible first."
+    },
+    "floor2_type": {
+      "label": "Type Gate",
+      "signal": "DISC family language becomes visible next."
+    },
+    "floor3_pillar": {
+      "label": "Pillar Gate",
+      "signal": "The state is read through the Z9 pillar lens."
+    },
+    "floor4_ohu": {
+      "label": "OHU Gate",
+      "signal": "Overdeveloped, Healthy, and Underdeveloped expressions are separated."
+    }
+  }
+}

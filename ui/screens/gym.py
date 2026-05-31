@@ -8,6 +8,7 @@ from game.gym_engine import PASSING_SCORE, get_gym_questions, save_gym_results, 
 from runtime.session_flags import reset_gym_run
 from ui.components import nav_buttons, progress_steps, section_card, state_pill
 from ui.visual_assets import render_visual_identity_card, render_visual_identity_strip
+from ui.gym_arena import render_gym_arena, render_round_brief
 
 
 def render_gym_screen() -> None:
@@ -34,6 +35,8 @@ def render_gym_screen() -> None:
         render_visual_identity_strip(active_state, screen="gym")
         st.info(f"Gym rule: 15 prompts. {PASSING_SCORE} correct defeats the Gym Leader. Retry Gym only if needed.")
 
+    render_gym_arena(active_state)
+
     questions = get_gym_questions(active_state)
     answers = st.session_state.setdefault("gym_answers", {})
 
@@ -51,8 +54,11 @@ def render_gym_screen() -> None:
         questions[11:15],
     ]
 
-    for tab, chunk in zip(round_tabs, chunks):
+    round_ids = ["warm_pressure", "mixed_ohu", "story_pressure", "gym_leader"]
+
+    for tab, chunk, round_id in zip(round_tabs, chunks, round_ids):
         with tab:
+            render_round_brief(round_id)
             for q in chunk:
                 choice = st.radio(
                     q["prompt"],
